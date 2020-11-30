@@ -1,5 +1,7 @@
 from turtle import *
 
+# Drawing a stick figure person for a assigment
+
 #head
 forward(30)
 left(90)
