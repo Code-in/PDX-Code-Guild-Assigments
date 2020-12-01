@@ -1,6 +1,6 @@
 
 
-def ifBetweenGrade(grade):
+def ifbetweengrade(grade):
     letter_grade = "F"
 
     if grade <= 59:
@@ -17,13 +17,13 @@ def ifBetweenGrade(grade):
     return letter_grade
 
 
-def modGrade(grade):
+def modgrade(grade):
     remainder = grade % 10
     higlow = ""
     if grade < 100:
-        if remainder < 5:
+        if remainder < 3:
             highlow = "-"
-        elif remainder > 5:
+        elif remainder > 7:
             highlow = "+"
         else:
             highlow = "" 
@@ -41,16 +41,18 @@ def inputgrade():
     return grade
 
 
+def main():
+    running = True
+    while running == True:
+        value = input("Enter Y or N if you want to get a letter grade: ")
 
-running = True
-while running == True:
-    value = input("Enter Y or N if you want to get a letter grade: ")
+        if value == "N" or value == "n":
+            break
 
-    if value == "N" or value == "n":
-        break
+        grade = inputgrade()
+        letter_grade = ifbetweengrade(grade)
+        grade_mod = modgrade(grade)
 
-    grade = inputgrade()
-    letter_grade = ifBetweenGrade(grade)
-    grade_mod = modGrade(grade)
+        print(f"You recieved {letter_grade}{grade_mod}")
 
-    print(f"You recieved {letter_grade}{grade_mod}")
+main()
