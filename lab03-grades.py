@@ -16,6 +16,23 @@ def ifBetweenGrade(grade):
 
     return letter_grade
 
+
+def modGrade(grade):
+    remainder = grade % 10
+    higlow = ""
+    if grade < 100:
+        if remainder < 5:
+            highlow = "-"
+        elif remainder > 5:
+            highlow = "+"
+        else:
+            highlow = "" 
+    else:
+       highlow = "++"  
+
+    return highlow
+
+
 running = True
 while running == True:
     value = input("Enter Y or N if you want to geta letter grade: ")
@@ -25,5 +42,6 @@ while running == True:
 
     grade = int(input("Enter grade value between 0-100: "))
     letter_grade = ifBetweenGrade(grade)
+    grade_mod = modGrade(grade)
 
-    print(f"You recieved {letter_grade}")
+    print(f"You recieved {letter_grade}{grade_mod}")
