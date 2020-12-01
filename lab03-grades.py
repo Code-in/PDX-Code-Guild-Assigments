@@ -32,15 +32,24 @@ def modGrade(grade):
 
     return highlow
 
+def inputgrade():
+    grade = input("Enter grade value between 0-100: ")
+    if grade.isdigit():
+        return int(grade)
+    else:
+        grade = inputgrade()
+    return grade
+
+
 
 running = True
 while running == True:
-    value = input("Enter Y or N if you want to geta letter grade: ")
+    value = input("Enter Y or N if you want to get a letter grade: ")
 
     if value == "N" or value == "n":
-        running = False
+        break
 
-    grade = int(input("Enter grade value between 0-100: "))
+    grade = inputgrade()
     letter_grade = ifBetweenGrade(grade)
     grade_mod = modGrade(grade)
 
