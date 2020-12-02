@@ -3,6 +3,12 @@ import random
 def random_num():
     return random.randint(1,10)
 
+def who_guesses():
+        print("You want computer to guess your number Enter 1")
+        value = input("You want to guess computers number Enter 2: ")
+        if value.isdigit and 1 <= int(value) <= 2:
+            return int(value)
+
 def whats_your_guess():
     while True:
         value = input("Enter your numerical guess from 1 to 10: ")
@@ -39,13 +45,20 @@ def compare_guess_to_answer(number, guess, tries, last_guess):
 def main():
     running = True
     while running == True:
-        value = input("Enter Y or N if you want play a Number Guessing game!")
+        value = input("Enter Y or N if you want play a Number Guessing game: ")
         if "n" == value.lower():
             break
-        number = random_num()
+        who = who_guesses()
+        if who == 1:
+            number = int(input("Enter a number including or between 1 and 10: "))
+        elif who == 2:
+            number = random_num()
         last_guess = None
         for i in range(10):
-            guess = whats_your_guess()
+            if who == 1:
+                guess = random.randint(1,10)
+            elif who == 2:
+                guess = whats_your_guess()
             # Setting a success and last guess
             success, last_guess = compare_guess_to_answer(number, guess, i, last_guess)
             if success:
