@@ -29,7 +29,11 @@ def main():
         value = input("Enter Y or N if want an emoticon: ")
         if value == "N" or value == "n":
             break
-        emoticon  = generate_emoticon()
-        print(f"Your random emoticon: {emoticon}")
+        x = 0
+        while x < 5:
+            emoticon  = generate_emoticon()
+            print(f"Your random emoticon: {emoticon}")
+            x+= 1
+        
 
 main()
