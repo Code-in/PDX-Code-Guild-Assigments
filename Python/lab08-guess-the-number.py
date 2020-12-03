@@ -57,7 +57,7 @@ def main():
         if "n" == value.lower():
             break
         who = who_guesses()
-        number = get_random_number()
+        number = get_random_number(who)
         last_guess = None
         for i in range(10):
             if who == 1:
