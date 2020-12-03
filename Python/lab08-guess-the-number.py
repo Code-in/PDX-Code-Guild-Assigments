@@ -42,6 +42,14 @@ def compare_guess_to_answer(number, guess, tries, last_guess):
     # make sure to return the success and guess for setting the new last_guess
     return success, guess
 
+def get_random_number(who):
+    if who == 1:
+        number = int(input("Enter a number including or between 1 and 10: "))
+    elif who == 2:
+        number = random_num()
+    return number
+
+
 def main():
     running = True
     while running == True:
@@ -49,10 +57,7 @@ def main():
         if "n" == value.lower():
             break
         who = who_guesses()
-        if who == 1:
-            number = int(input("Enter a number including or between 1 and 10: "))
-        elif who == 2:
-            number = random_num()
+        number = get_random_number()
         last_guess = None
         for i in range(10):
             if who == 1:
