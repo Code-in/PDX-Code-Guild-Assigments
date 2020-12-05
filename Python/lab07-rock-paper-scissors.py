@@ -1,7 +1,16 @@
 import random
 
+''' Input choices for player 1'''
 choices = 'rpslv'
-names = {"r":"Rock", "p":"Paper", "s":"Scissors", "v":"Volcan", "l":"Lizard"}
+
+''' Matches inputs to Titles'''
+names = {'r':'Rock', 'p':'Paper', 's':'Scissors', 'v':'Volcan', 'l':'Lizard'}
+
+''' Note there's only 3 options 
+ 0 - means they tied
+ 1 - means computer won
+ 2 - means player 1 wins
+'''
 wins = {'rr':0, 'rs':1, 'rp':2, 'rv':2, 'rl':1, 
         'ss':0, 'sr':2, 'sp':1, 'sv':2, 'sl':1, 
         'pp':0, 'ps':2, 'pr':1, 'pv':1, 'pl':2, 
@@ -12,7 +21,8 @@ wins = {'rr':0, 'rs':1, 'rp':2, 'rv':2, 'rl':1,
 def ask_user_for_rock_paper_scissors():
     response = False
     while response == False:
-        selection = input("Enter 'R' for Rock, 'P' for Paper, 'S' for Scissors, 'V' for Volcan and 'L' for Lizard: ")
+        msg = f"Enter 'r' for {names['r']}, 'p' for {names['p']}, 's' for {names['s']}, 'v' for {names['v']} and 'l' for {names['l']}: "
+        selection = input(msg)
         if selection.lower() in choices:
             return selection.lower()
 

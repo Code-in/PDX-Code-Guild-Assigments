@@ -1,13 +1,16 @@
 import random
 
+HUMAN = 2
+COMPUTER = 1
+
 def random_num():
     return random.randint(1,10)
 
 def who_guesses():
-        print("You want computer to guess your number Enter 1")
-        value = input("You want to guess computers number Enter 2: ")
-        if value.isdigit and 1 <= int(value) <= 2:
-            return int(value)
+    print("Computer guess your number Enter 1")
+    value = input("Guess computer's number Enter 2: ")
+    if value.isdigit() and COMPUTER <= int(value) <= HUMAN:
+        return int(value)
 
 def whats_your_guess():
     while True:
@@ -40,12 +43,12 @@ def compare_guess_to_answer(number, guess, tries, last_guess):
             warmer_or_colder(number, guess, last_guess)
         print("Try again!")
     # make sure to return the success and guess for setting the new last_guess
-    return success, guess
+    return success
 
 def get_random_number(who):
-    if who == 1:
+    if who == COMPUTER:
         number = int(input("Enter a number including or between 1 and 10: "))
-    elif who == 2:
+    elif who == HUMAN:
         number = random_num()
     return number
 
@@ -56,17 +59,18 @@ def main():
         value = input("Enter Y or N if you want play a Number Guessing game: ")
         if "n" == value.lower():
             break
-        who = who_guesses()
+        who = who_guesses() # this should return a 1 or 2
         number = get_random_number(who)
         last_guess = None
         for i in range(10):
-            if who == 1:
+            if who == COMPUTER:
                 guess = random.randint(1,10)
-            elif who == 2:
+            elif who == HUMAN:
                 guess = whats_your_guess()
             # Setting a success and last guess
-            success, last_guess = compare_guess_to_answer(number, guess, i, last_guess)
+            success = compare_guess_to_answer(number, guess, i, last_guess)
             if success:
                 break
+            last_guess = guess
 
 main()
