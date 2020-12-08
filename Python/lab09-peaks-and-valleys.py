@@ -58,9 +58,28 @@ def print_xo(data, peaks, valleys, dams):
     output = []
     maxheight = max_height_of_data(data)
     print(f"max: {maxheight}")
-    #for i in range(len(data)):
     
+    graph = ""
     
+    for v in range(maxheight, 1, -1): # loop vertically to max height for each horizontal 9 element
+        horzontal = ""
+        for h in range(len(data)): # looping horizontally through all the 20 elements
+            if data[h] > v:
+                horzontal += "X"
+            else:
+                in_dam = False
+                for dam in dams:
+                    if (dam[0] < h < dam[1]) and ((v >= data[h]) and (v < data[dam[0]])): # need to determine if vertical value is >= than base value and < than dam vertical value.
+                        in_dam = True
+                        break
+                if in_dam:
+                    horzontal += "0"
+                else:
+                    horzontal += " "
+
+
+                
+        print(horzontal)
     # check to make sure we are not equal to a peak or a valley or in the dam ranges.
     
 
@@ -80,5 +99,5 @@ def main():
     valleys_list = valleys(data)
     dam_list = dams(data, peaks(data), valleys(data))
     print(f"print out: {print_xo(data, peaks_list, valleys_list, dam_list)}")
-
+    print_xo(data, peaks_list, valleys_list, dam_list)
 main()
