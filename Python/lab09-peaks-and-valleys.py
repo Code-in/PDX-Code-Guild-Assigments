@@ -1,5 +1,5 @@
 
-
+# returns the linear value for the peaks
 def peaks(data):
     index_back2 = 0
     index_back1 = 0
@@ -13,6 +13,7 @@ def peaks(data):
         index_back1 = index
     return output
 
+# returns the linear value for the valleys
 def valleys(data):
     index_back2 = 0
     index_back1 = 0
@@ -27,12 +28,14 @@ def valleys(data):
 
     return output
 
+# print out the numerical data for the peaks and valleys
 def peaks_and_valleys(data):
     output = []
     output = peaks(data)
     output += valleys(data)
     return output
 
+# this method finds all the areas where valleys can cotnain water and return a linear ends points for containment of the water.
 def dams(data, peaks, valleys):
     current_peak = 0
     output = []
@@ -44,7 +47,7 @@ def dams(data, peaks, valleys):
                 break
     return output
 
-
+# for printing the data we need to know the maximum height of the data to plot
 def max_height_of_data(data):
     maxval = 0
     for val in data:
@@ -53,7 +56,7 @@ def max_height_of_data(data):
     return maxval
 
 
-
+# this method adds graphing which print X for Moutians, 0 for water, and blanks for sky.
 def print_xo(data, peaks, valleys, dams):
     output = []
     maxheight = max_height_of_data(data)
@@ -75,19 +78,11 @@ def print_xo(data, peaks, valleys, dams):
                 if in_dam:
                     horzontal += "0"
                 else:
-                    horzontal += " "
-
-
-                
+                    horzontal += " "       
         print(horzontal)
-    # check to make sure we are not equal to a peak or a valley or in the dam ranges.
     
-
-
-
-
-
-
+    
+# main function for process data
 def main():
     data = [1, 2, 3, 4, 5, 6, 7, 6, 5, 4, 5, 6, 7, 8, 9, 8, 7, 6, 7, 8, 9]
     print(f"peaks: {peaks(data)}") # [6, 14]
