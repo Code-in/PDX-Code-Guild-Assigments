@@ -25,13 +25,22 @@ def ask_for_three_card():
 
 def score_hand(hand):
     value = 0
+    ace_count = 0
+
     for card in hand:
         if card in ['10', 'J', 'Q', 'K', 'j', 'q', 'k']:
             value += 10
         elif card in ['A', 'a']:
             value += 1
+            ace_count += 1
         else:
             value += int(card)
+
+        if (ace_count == 1) and (value + 10 <= 21):
+            value += 10
+        elif (ace_count == 2) and (value + 10 <= 21):
+            value += 10
+            
     return value
 
 
