@@ -38,9 +38,7 @@ def score_hand(hand):
         else:
             value += int(card)
 
-        if (ace_count == 1) and (value + 10 <= 21):
-            value += 10
-        elif (ace_count == 2) and (value + 10 <= 21):
+        if ((0 < ace_count <= 3) and (value + 10 <= 21)):
             value += 10
             
     return value
