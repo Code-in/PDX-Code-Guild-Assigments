@@ -1,12 +1,14 @@
 import string
 
-chars = "abcdefghijklmnopqrstuvwxyz"
-chars_len = len(chars)
-char_list = list(chars)
-special = string.punctuation + " "
+
 
 
 def rot_by_offset(text, offset):
+    chars = "abcdefghijklmnopqrstuvwxyz"
+    chars_len = len(chars)
+    char_list = list(chars)
+    special = string.punctuation + " "
+
     in_string = text.lower()
     in_list = list(in_string)
     start_ord = ord(char_list[0])
@@ -18,12 +20,14 @@ def rot_by_offset(text, offset):
         if char in special:
             new_ord = ord(char)
         else:
-
             char_ord = ord(char)
             wip_ord = char_ord + offset
-            if  wip_ord > end_ord:
+            if  offset > 0 and wip_ord > end_ord:
                 r = wip_ord - end_ord
                 new_ord = start_ord + (r - 1)
+            elif offset < 0 and wip_ord < start_ord:
+                r = start_ord - wip_ord
+                new_ord = end_ord - (r - 1)
             else:
                 new_ord = wip_ord
         out_string += chr(new_ord)
@@ -35,7 +39,7 @@ def rot_by_offset(text, offset):
 
 def rot_all_characters_by_offset(chars, offset):
     encoder = string.ascii_letters + string.punctuation + " "
-    #print(f"Chars: {encoder}")
+
     encoder_len = len(encoder)
     encoder_list = list(encoder)
 
@@ -47,9 +51,6 @@ def rot_all_characters_by_offset(chars, offset):
     for i in range(len(encoder_list)):
         encoder_dict_char[i] = encoder_list[i]
 
-    #print(encoder_dict_index)
-    #print(encoder_dict_char)
-
     chars_list = list(chars)
     start_ord = encoder[0]
     end_ord = encoder[-1]
@@ -60,31 +61,32 @@ def rot_all_characters_by_offset(chars, offset):
         if not (char in encoder):
             new_ord = encoder_dict_index[char]
         else:
-            if offset > 0:
-                char_ord = encoder_dict_index[char]
-                wip_ord = char_ord + offset
-                if  wip_ord > encoder_dict_index[end_ord]:
-                    r = wip_ord - encoder_dict_index[end_ord]
-                    new_ord = encoder_dict_index[start_ord] + (r - 1)
-                else:
-                    new_ord = wip_ord
-            elif offset < 0:
-                char_ord = encoder_dict_index[char]
-                wip_ord = char_ord + offset
-                if  wip_ord < encoder_dict_index[start_ord]:
-                    r = wip_ord - encoder_dict_index[start_ord]
-                    new_ord = encoder_dict_index[end_ord] + (r + 1)
-                else:
-                    new_ord = wip_ord
+            char_ord = encoder_dict_index[char]
+            wip_ord = char_ord + offset
+            if  offset > 0 and wip_ord > encoder_dict_index[end_ord]:
+                r = wip_ord - encoder_dict_index[end_ord]
+                new_ord = encoder_dict_index[start_ord] + (r - 1)
+
+            elif  offset < 0 and wip_ord < encoder_dict_index[start_ord]:
+                r = encoder_dict_index[start_ord] - wip_ord
+                new_ord = encoder_dict_index[end_ord] - (r - 1)
             else:
-               new_ord += new_ord 
+                new_ord = wip_ord
         out_string += encoder_dict_char[new_ord]
     return out_string
 
-print(rot_by_offset("hello world!", 22))
-print(rot_by_offset("dahhk sknhz!", (26 - 22)  ))
+offset = 22
+output = rot_by_offset("hello world!", offset)
+print(output)
+output = rot_by_offset(output, (-1 * offset))
+print(output)
 
-print(rot_all_characters_by_offset("hello@world!", 22))
-print(rot_all_characters_by_offset("DAHHKkSKNHz[", -22  ))
+
+offset = 2
+output = rot_all_characters_by_offset(output, offset)
+print(output)
+
+output = rot_all_characters_by_offset(output, (-1 * offset))
+print(output)
 
 
