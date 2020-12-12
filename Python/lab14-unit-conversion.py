@@ -8,7 +8,7 @@ conversion_dict = {
 }
 
 # solution 1 allow user to enter distance in feet and return distance in meters
-def prompt_user_for_distance():
+def version1():
      while True:
          ft = input("what is the distance in feet do you want converted to meters? ")
          if ft.isdigit():
@@ -51,7 +51,15 @@ def prompt_user_for_outgoing_unit():
             return transform_to_unit_key(unit)
           
 
-def convert():  
+
+def version2():  
+    dst = prompt_user_for_a_distance() 
+    iunit = prompt_user_for_incoming_unit()
+    odst = int(dst) * conversion_dict[iunit]['m']
+    print(f"{dst} {iunit} is {round(odst, 4)} meters")
+
+
+def version3():  
     dst = prompt_user_for_a_distance() 
     iunit = prompt_user_for_incoming_unit()
     ounit = prompt_user_for_outgoing_unit()
@@ -59,6 +67,11 @@ def convert():
     print(f"{dst} {iunit} is {round(odst, 4)} {ounit}")
 
 
+# Version 1
+#version1()
 
-#prompt_user_for_distance()
-convert()
+# Version 2
+version2()
+
+# Version 3
+# version3()
