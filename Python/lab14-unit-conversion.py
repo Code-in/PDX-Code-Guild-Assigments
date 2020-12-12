@@ -1,0 +1,64 @@
+
+
+conversion_dict = {
+    'ft' : {'ft' : 1, 'mi' : 0.000189394, 'm' : 0.3048, 'km' : 0.0003048  },
+    'mi' : {'ft' : 5280, 'mi' : 1, 'm' : 1609.34, 'km' : 1.60934  },
+    'm' : {'ft' : 3.28084, 'mi' : 0.000621371, 'm' : 1, 'km' : 0.001  },
+    'km' : {'ft' : 3280.84, 'mi' : 1.60934, 'm' : 1000, 'km' : 1  }
+}
+
+# solution 1 allow user to enter distance in feet and return distance in meters
+def prompt_user_for_distance():
+     while True:
+         ft = input("what is the distance in feet do you want converted to meters? ")
+         if ft.isdigit():
+             meters = int(ft) * conversion_dict['ft']['m']
+             print(f"{ft} ft is {round(meters, 4)} m")
+
+
+
+# solution 1 allow user to enter distance in feet and return distance in meters
+def prompt_user_for_a_distance():
+     while True:
+         dst = input("Enter a distance: ")
+         if dst.isdigit():
+             return dst
+
+def transform_to_unit_key(unit):
+    unit = unit.lower()
+    if unit in ['ft', 'f', 'feet']:
+        return 'ft'
+    elif unit in ['mi', 'mile']:
+        return 'mi'
+    elif unit in ['me', 'm', 'meter']:
+        return 'm'
+    elif unit in ['km', 'kilometer']:
+        return 'km'
+    else: 
+        return 'ft'
+    
+
+def prompt_user_for_incoming_unit():
+     while True:
+        unit = input("Enter the distance unit type [ft - Feet, mi - Mile, m - Meters, km - Kilometers]: ")
+        if unit in ['ft', 'f', 'feet', 'mi', 'mile', 'me', 'm', 'meter', 'km', 'kilometer']:
+            return transform_to_unit_key(unit)
+
+def prompt_user_for_outgoing_unit():
+     while True:
+        unit = input("Enter the unit type to convert to [ft - Feet, mi - Mile, m - Meters, km - Kilometers]: ")
+        if unit in ['ft', 'f', 'feet', 'mi', 'mile', 'me', 'm', 'meter', 'km', 'kilometer']:
+            return transform_to_unit_key(unit)
+          
+
+def convert():  
+    dst = prompt_user_for_a_distance() 
+    iunit = prompt_user_for_incoming_unit()
+    ounit = prompt_user_for_outgoing_unit()
+    odst = int(dst) * conversion_dict[iunit][ounit]
+    print(f"{dst} {iunit} is {round(odst, 4)} {ounit}")
+
+
+
+#prompt_user_for_distance()
+convert()
