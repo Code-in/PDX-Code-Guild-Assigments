@@ -14,6 +14,7 @@ def read_in_text():
 
     for word in wordlist:
         #print(word.lower())
+        word = word.lower()
         if word in word_count_dict:
             word_count_dict[word] += 1
         else:
