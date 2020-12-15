@@ -17,7 +17,7 @@ class ReadBook():
         self.sentance_length_average = 0
         self.cari = 0
 
-    # process a specific book for the ARI data
+    # Method - process a specific book for the ARI data
     def read_book(self):
         self.text = self.read_in_text(self.web)
         self.character_count, self.word_count  = self.parse_text_into_counts(self.text)
@@ -26,7 +26,7 @@ class ReadBook():
         self.sentance_length_average = self.compute_sentance_length_average()
         self.cari = self.compute_automated_readability_index()
 
-    # processes the stext from web site or from a file on disk
+    # Method - processes the stext from web site or from a file on disk
     def read_in_text(self, web):
         if web:
             response = requests.get(self.link)
@@ -37,7 +37,7 @@ class ReadBook():
                 text = file.read()
         return text
 
-    # parse the text from site or disk into a word count dictionary
+    # Method - parse the text from site or disk into a word count dictionary
     def parse_text_into_counts(self, text):
         regex = r'\w+'
         wordlist=re.findall(regex, text)
@@ -51,20 +51,21 @@ class ReadBook():
                 
         return character_count, word_count
 
-    # break the text in to sectances and count them
+    # Method - break the text in to sectances and count them
     def parse_text_in_sentance_count(self, text):
         regex = r'\b[!?.]'
         sentance_end_punputation_list=re.findall(regex, text)
         return len(sentance_end_punputation_list)
 
-    # averages word lengths against the overall character count
+    # Method - averages word lengths against the overall character count
     def compute_word_length_average(self):
         return self.character_count/self.word_count
 
-    # averages sentance lengths against the overall word count
+    # Method - averages sentance lengths against the overall word count
     def compute_sentance_length_average(self):
         return self.word_count/self.sentance_count
 
+    # Method - Computes the reability of a specific piece of text
     def compute_automated_readability_index(self):
         cari = (4.71 * self.word_length_average) + (0.5*self.sentance_length_average) - 21.43
         return cari
@@ -87,6 +88,7 @@ class ProjectGutenbergBooks():
         }
         self.books_and_index_number = []
 
+    # Method - output the list for books to select
     def output_book_options_for_computing_ari(self):
         print(len(self.books_available_with_urls))
         
@@ -96,15 +98,21 @@ class ProjectGutenbergBooks():
         for i in range(len(self.books_and_index_number)):
             print(f"Select \"{i}\" for Book Title: \"{self.books_and_index_number[i]}\"")
 
+    # Method - returns a book url from and index
     def get_book_url_with_index(self, index):
         key_name = self.books_and_index_number[index]
         return self.books_available_with_urls[key_name]
 
+    # Method - returns book name from an index
     def get_book_name_with_index(self, index):
         return self.books_and_index_number[index]
             
 
-# handle the text from user to exit the REPL
+#-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+# Functions below are for REPL and Runtime code
+#-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+# Function - handles the text from user to exit the REPL
 def quit_or_continue():
     while True:
         quit = input("To quit type [quit, stop or exit] or just press the \"Return key\" to continue: ")
@@ -115,18 +123,18 @@ def quit_or_continue():
             return False
 
 
-# Ask the user enters an index for the book they want to process
-def read_text_from_disk_or_web(books):
+# Function - asks the user enters an index for the book they want to process
+def what_book_to_process(books):
     while True:
         number = input("Type the number of the book you want to compute the ARI on: ")
         if number.isdigit() and (0 <= int(number) < len(books.books_and_index_number)):
             return int(number)
 
-# this function process a book and prints out all the details about it ARI.
+# Function - process a book and prints out all the details about it ARI.
 def select_a_book_to_compute():
     books = ProjectGutenbergBooks()
     books.output_book_options_for_computing_ari()
-    book_index = read_text_from_disk_or_web(books)
+    book_index = what_book_to_process(books)
     book_url = books.get_book_url_with_index(book_index)
     book_reader = ReadBook(book_url, True)
     book_reader.read_book()
@@ -137,7 +145,7 @@ def select_a_book_to_compute():
     print(f"Computed Automated Readability Index: {book_reader.cari}")
 
 
-# Main processing loop which contains the app REPL
+# Function - Main processing loop which contains the app REPL
 def main():
     print("Welcome Compute Automated Readability Index 5000")
     quit = False
