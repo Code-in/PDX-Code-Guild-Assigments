@@ -3,12 +3,19 @@
 import requests
 import re
 
-def read_in_text():
-    response = requests.get('https://www.gutenberg.org/files/62897/62897-0.txt')
-    response.encoding = 'utf-8' # set encoding to utf-8
+def read_in_text(web):
+    if web:
+        response = requests.get('https://www.gutenberg.org/files/62897/62897-0.txt')
+        response.encoding = 'utf-8' # set encoding to utf-8
+        text = response.text
+    else:
+        with open('raven.txt', 'r', encoding='utf-8') as file:
+            text = file.read()
+    return text
 
+def parse_text(text):
     regex = r'\w+'
-    wordlist=re.findall(regex, response.text)
+    wordlist=re.findall(regex, text)
     #print(wordlist)
     word_count_dict = {}
 
@@ -41,22 +48,42 @@ def version2(word_count_dict):
     for i in range(min(len(words), 10)):  # print the top 10 words, or all of them, whichever is smaller
         print(words[i])
 
+def quit_or_continue():
+        quit = input("To quit type [quit, stop or exit]: ")
+        quit = quit.lower()
+        if quit in ['q', 'quit', 's', 'stop', 'e', 'exit']:
+            return True
+        else:
+            return False
+
 def version3(word_count_dict):
+    word = get_word(word_count_dict)
+    count = specific_word_count(word, word_count_dict)
+    print(f"There are {count} occurances of the {word} in our text")
+
+
+def read_text_from_disk_or_web():
     while True:
-        word = get_word(word_count_dict)
-        count = specific_word_count(word, word_count_dict)
-        print(f"There are {count} occurances of the {word} in our text")
-
-
-
+        word = input("Do you want to read \"The Raven\" from disk or web[d - Disk or w - Web]: ")
+        word = word.lower()
+        if word in ['w', 'web']:
+            return True
+        if word in ['d', 'disk']:
+            return False
 
 
 
 def main():
     print("Welcome Word Count 5000")
-    word_count_dict = read_in_text()
-
+    quit = False
+    web = read_text_from_disk_or_web()
+    text = read_in_text(web)
+    word_count_dict = parse_text(text)
     version2(word_count_dict)
-    version3(word_count_dict)
+    while True:
+        version3(word_count_dict)
+        quit = quit_or_continue()
+        if quit:
+            break
 
 main()
