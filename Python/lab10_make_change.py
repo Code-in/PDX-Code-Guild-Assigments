@@ -3,7 +3,7 @@
 def get_value():
     while True:
         value = input("Enter a dollar amount: ")
-        if value.isdigit:
+        if value.isdigit():
             return float(value)
 
 ''' Version 1 - Simple Make Change function'''
