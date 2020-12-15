@@ -90,13 +90,14 @@ class ProjectGutenbergBooks():
 
     # Method - output the list for books to select
     def output_book_options_for_computing_ari(self):
-        print(len(self.books_available_with_urls))
-        
         for k, v in self.books_available_with_urls.items():
             self.books_and_index_number.append(k)
 
+        print("<<-=-=-=-=-= List of books to choose from =-=-=-=-=-=-=->>")
         for i in range(len(self.books_and_index_number)):
             print(f"Select \"{i}\" for Book Title: \"{self.books_and_index_number[i]}\"")
+        print("<<-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=>>\n")
+
 
     # Method - returns a book url from and index
     def get_book_url_with_index(self, index):
@@ -126,11 +127,11 @@ def quit_or_continue():
 # Function - asks the user enters an index for the book they want to process
 def what_book_to_process(books):
     while True:
-        number = input("Type the number of the book you want to compute the ARI on: ")
+        number = input("Type the number of the book you want to compute the Automated Readability Index (ARI) on: ")
         if number.isdigit() and (0 <= int(number) < len(books.books_and_index_number)):
             return int(number)
 
-# Function - process a book and prints out all the details about it ARI.
+# Function - process a book and prints out all the details about it Automated Readability Index (ARI).
 def select_a_book_to_compute():
     books = ProjectGutenbergBooks()
     books.output_book_options_for_computing_ari()
@@ -142,12 +143,12 @@ def select_a_book_to_compute():
     print(f"Sentance Count: {book_reader.sentance_count}")
     print(f"Word Count: {book_reader.word_count}")
     print(f"Character Count: {book_reader.character_count}")
-    print(f"Computed Automated Readability Index: {book_reader.cari}")
+    print(f"Computed Automated Readability Index (ARI): {book_reader.cari}")
 
 
 # Function - Main processing loop which contains the app REPL
 def main():
-    print("Welcome Compute Automated Readability Index 5000")
+    print("\n\nWelcome Compute Automated Readability Index (ARI) 5000")
     quit = False
     while True:
         select_a_book_to_compute()
