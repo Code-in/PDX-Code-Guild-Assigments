@@ -1,5 +1,5 @@
 
-
+# This function asks the user for 3 cards as the input for the hand to score
 def ask_for_three_card():
     ''' This method ask the user for 3 parks which are in the acceptable card list. If not it keeps asking until they match the acceptable cards. '''
     print("Blackjack Advice 2020(tm) ;-)")
@@ -24,6 +24,7 @@ def ask_for_three_card():
             break
     return users_card
 
+# this function scores the user hand
 def score_hand(hand):
     ''' This method score the user's hand and makes some basic decisions based on hand score and numnber of aces in hand. '''
     value = 0
@@ -43,7 +44,7 @@ def score_hand(hand):
             
     return value
 
-
+# Give the user a base 'Hit', 'Stay', 'Black Jack' or 'Busted' feedback based on their hand
 def get_advice(hand):
     ''' This methods performs some basic advice based on the user hand '''
     score = score_hand(hand)
@@ -57,7 +58,7 @@ def get_advice(hand):
     else:
         print(f"{score} Already Busted")
 
-    
+# main process function to run this 1 shot app
 def main():
     ''' Main method to run all the code to see if we have a solution '''
     hand = ask_for_three_card()
