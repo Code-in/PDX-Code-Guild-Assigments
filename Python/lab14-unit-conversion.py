@@ -4,7 +4,7 @@ conversion_dict = {
     'ft' : {'ft' : 1, 'mi' : 0.000189394, 'm' : 0.3048, 'km' : 0.0003048  },
     'mi' : {'ft' : 5280, 'mi' : 1, 'm' : 1609.34, 'km' : 1.60934  },
     'm' : {'ft' : 3.28084, 'mi' : 0.000621371, 'm' : 1, 'km' : 0.001  },
-    'km' : {'ft' : 3280.84, 'mi' : 1.60934, 'm' : 1000, 'km' : 1  }
+    'km' : {'ft' : 3280.84, 'mi' : 0.621371, 'm' : 1000, 'km' : 1  }
 }
 
 # solution 1 allow user to enter distance in feet and return distance in meters
@@ -73,7 +73,7 @@ def version3():
 #version1()
 
 # Version 2
-version2()
+#version2()
 
 # Version 3
 # version3()
