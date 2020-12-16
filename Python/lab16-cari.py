@@ -1,5 +1,6 @@
 import requests
 import re
+import math
 
 
 # Read Book Class which I'll utilize to encapsulate the reading and parsing of the text
@@ -133,6 +134,23 @@ def what_book_to_process(books):
 
 # Function - process a book and prints out all the details about it Automated Readability Index (ARI).
 def select_a_book_to_compute():
+    ari_scale = {
+        1: {'ages':   '5-6', 'grade_level': 'Kindergarten'},
+        2: {'ages':   '6-7', 'grade_level':    '1st Grade'},
+        3: {'ages':   '7-8', 'grade_level':    '2nd Grade'},
+        4: {'ages':   '8-9', 'grade_level':    '3rd Grade'},
+        5: {'ages':  '9-10', 'grade_level':    '4th Grade'},
+        6: {'ages': '10-11', 'grade_level':    '5th Grade'},
+        7: {'ages': '11-12', 'grade_level':    '6th Grade'},
+        8: {'ages': '12-13', 'grade_level':    '7th Grade'},
+        9: {'ages': '13-14', 'grade_level':    '8th Grade'},
+        10: {'ages': '14-15', 'grade_level':    '9th Grade'},
+        11: {'ages': '15-16', 'grade_level':   '10th Grade'},
+        12: {'ages': '16-17', 'grade_level':   '11th Grade'},
+        13: {'ages': '17-18', 'grade_level':   '12th Grade'},
+        14: {'ages': '18-22', 'grade_level':      'College'}
+    }
+
     books = ProjectGutenbergBooks()
     books.output_book_options_for_computing_ari()
     book_index = what_book_to_process(books)
@@ -143,7 +161,21 @@ def select_a_book_to_compute():
     print(f"Sentance Count: {book_reader.sentance_count}")
     print(f"Word Count: {book_reader.word_count}")
     print(f"Character Count: {book_reader.character_count}")
-    print(f"Computed Automated Readability Index (ARI): {book_reader.cari}")
+    print(f"Raw computed Automated Readability Index (ARI): {book_reader.cari}")
+    rounded_up_ari = compute_ari_score(book_reader.cari)
+    ari_data_dict = ari_scale[rounded_up_ari]
+
+    print(f'''--------------------------------------------------------
+    The ARI for {books.get_book_name_with_index(book_index)} is {rounded_up_ari}
+    This corresponds to a {ari_data_dict['grade_level']} level of difficulty
+    that is suitable for an average person {ari_data_dict['ages']} years old.
+    --------------------------------------------------------''')
+
+
+def compute_ari_score(ari):
+    rounded_up_ari = math.ceil(ari)
+    return rounded_up_ari
+
 
 
 # Function - Main processing loop which contains the app REPL
