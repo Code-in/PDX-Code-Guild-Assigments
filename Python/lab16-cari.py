@@ -134,6 +134,7 @@ def what_book_to_process(books):
 
 # Function - process a book and prints out all the details about it Automated Readability Index (ARI).
 def select_a_book_to_compute():
+    # ARI dictionary which contains the specific data associated with the grade level of the ARI score.
     ari_scale = {
         1: {'ages':   '5-6', 'grade_level': 'Kindergarten'},
         2: {'ages':   '6-7', 'grade_level':    '1st Grade'},
@@ -171,7 +172,7 @@ def select_a_book_to_compute():
     that is suitable for an average person {ari_data_dict['ages']} years old.
     --------------------------------------------------------''')
 
-
+# Function - to process the raw ARI and round up to the nearest int value
 def compute_ari_score(ari):
     rounded_up_ari = math.ceil(ari)
     return rounded_up_ari
