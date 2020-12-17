@@ -84,62 +84,83 @@ def lab17_verion1():
 
 
 # Function - Prints the header for the quotes as they are broken up over multiple pages
-def print_a_page_of_quotes(keyword, page_count, last_count):
+def print_stats_about_quotes(keyword, page_count, last_count):
     print(f"{last_count} quotes associated with {keyword} - page {page_count}")
+
+# Function - for printing a range of quote from a list of quotes
+def print_quotes(accum_quote_counts, range_count, list_of_quotes):
+    for i in range(accum_quote_counts, range_count):
+        print(f"Quote {i + 1}: {list_of_quotes[i]}")
 
 # Function - Ask the user for input to print next page of quotes or exit
 def print_next_or_quit():
     while True:
         action = input("Enter 'next page' or 'done': ")
         action = action.lower()
-        if action in ['np', 'n', 'next page', 'd', 'done']:
-            if action in ['np', 'n', 'next page']:
-                return True
-            else:
-                return False
+        if action in ['np', 'n', 'p', 'next page']:
+            return False
+        elif action in ['d', 'done', 'e', 'exit', 'q', 'quit']:
+            return True
+
+# Function - Ask the user for keyword for the qotd site for a specific kind of quotes  to retrieve
+def get_keyword_from_user():
+    keyword = None
+    while True:
+        keyword = input("Enter a keyword to search for in quotes: ")
+        if keyword.isascii():
+            return keyword
+
+# determines how many quotes can be displayed
+def how_many_quotes_to_show(accum_quote_counts, num_of_quote_per_page, len_of_list_quotes):
+    if accum_quote_counts + num_of_quote_per_page > len_of_list_quotes: # check to see how many quotes are left and if we have enough to do a full
+        range_count = len_of_list_quotes
+        quotes_per_page = len_of_list_quotes - accum_quote_counts # we don't have enough quotes to do a full page of quotes so only process what's let
+    else:
+        range_count = accum_quote_counts + num_of_quote_per_page # we have enough quotes to do a full page so let set range to a full page count
+    return range_count, quotes_per_page
 
 # Function - for the lab17 coding exercise which provides the version 2 output
 def lab17_verion2():
     qotd = QuoteOfTheDay()
-    keyword = ''
+    keyword = None
     print("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-")
-    while True:
-        keyword = input("Enter a keyword to search for in quotes: ")
-        if keyword.isascii():
-            break
 
-    if not keyword == '':
+    if keyword == None:
+
+        # Get the keyword for the qotd site from the user
+        keyword = get_keyword_from_user()
+
+        # Retrieve the list of quotes from the qotd site using the users keyword
         list_of_quotes = qotd.get_list_of_quotes_for_keyword(keyword)
-        quote_counts = 0
-        page_count = 1
-        action = True
+        
+        # setup counter conditionals
+        len_of_list_quotes = len(list_of_quotes)
+        num_of_quote_per_page = 10
+        accum_quote_counts = 0
+        accum_page_count = 1
+        quotes_per_page = 10
+        range_count = 0
+
         while True:
-            if quote_counts < len(list_of_quotes) and action:
                 
-                print("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-")
-                last_count = 0
-                quotes_per_page = 10
-                if quote_counts + 10 > len(list_of_quotes):
-                    last_count = len(list_of_quotes)
-                    quotes_per_page = len(list_of_quotes) - quote_counts
-                else:
-                    last_count = quote_counts + 10
+            print("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-")
+            # determine how many quotes can be displayed
+            range_count, quotes_per_page = how_many_quotes_to_show(accum_quote_counts, num_of_quote_per_page, len_of_list_quotes)
 
-                print_a_page_of_quotes(keyword, page_count, quotes_per_page)
-                for i in range(quote_counts, last_count):
-                    print(f"Quote {i + 1}: {list_of_quotes[i]}")
-                print("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-")
-                # increment our conditionals
-                quote_counts += 10
-                page_count += 1
+            print_stats_about_quotes(keyword, accum_page_count, quotes_per_page) # print info about the quotes
 
-                # Lets not ask if the list of quotes have all been printed.
-                if quote_counts < len(list_of_quotes):
-                    action = print_next_or_quit()
-                else:
-                    break  # Where done let's get out of here
-            else:
-                break # Where done let's get out of here
+            print_quotes(accum_quote_counts, range_count, list_of_quotes) # print the quotes for the current page.
+
+            print("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-")
+
+            # increment our counter conditionals
+            accum_quote_counts += num_of_quote_per_page
+            accum_page_count += 1
+
+            # Lets now ask if the list of quotes have all been printed.
+            if accum_quote_counts > len_of_list_quotes or print_next_or_quit(): # if user decides to quit then we need to set action to false and break
+                break
+
          
 
 # Function - Main processing function where you can easily set what version of the code you want to utilize
