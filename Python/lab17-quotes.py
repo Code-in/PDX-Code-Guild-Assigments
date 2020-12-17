@@ -171,7 +171,6 @@ def main():
     print("Quote of the day: ")   
     lab17_verion1()
     print("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n\n\n")
-
     lab17_verion2()
 
 
