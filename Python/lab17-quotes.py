@@ -1,5 +1,8 @@
 import requests
 
+#=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+# Class for accessing data from the qotd (Quote of the Day) website
+#=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 class QuoteOfTheDay():
     # Method - inializer for the qotd site class
     def __init__(self):
@@ -45,7 +48,9 @@ class QuoteOfTheDay():
             output.append(quote['body'])
         return output
 
-
+#=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+# Class for processing web requests
+#=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 class GetWebAPIData():
     # Method - inializer for the Web API Response
     def __init__(self, url, token=None, keyword=None, page=1):
