@@ -1,4 +1,5 @@
 import requests
+import datetime
 
 #=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 # Class for accessing data from the qotd (Quote of the Day) website
@@ -6,29 +7,31 @@ import requests
 class ATM():
     # Method - inializer for the qotd site class
     def __init__(self, starting_balance=0, irate=0.001):
-        self.accounnt_balance = starting_balance
+        self.account_balance = starting_balance
         self.irate = irate
         self.transactions = []
+        self.last_date_icomputed = None
+
     
     # Method - returns the account balance
     def balance(self):
-        return self.accounnt_balance
+        return self.account_balance
     
     # Method - deposits the given amount in the account
     def deposit(self, amount):
-        self.accounnt_balance += amount
+        self.account_balance += amount
         self.transactions.append(f'user deposited ${amount}')
 
     # Method - returns true if the withdrawn amount won't put the account in the negative
     def check_withdrawal(self, amount):
-        if self.accounnt_balance - amount > 0:
+        if self.account_balance - amount > 0:
             return True
         return False
 
     # Method - withdraws the amount from the account and returns it
     def withdraw(self, amount):
         if self.check_withdrawal(amount):
-            self.accounnt_balance -= amount
+            self.account_balance -= amount
             self.transactions.append(f'user withdrew ${amount}')
             return amount
         else:
@@ -36,7 +39,10 @@ class ATM():
 
     # Method - returns the amount of interest calculated on the account
     def calc_interest(self):
-        return self.accounnt_balance * self.irate
+        if self.last_date_icomputed == None:
+            self.last_date_icomputed = True
+            return self.account_balance * self.irate
+        return 0.0
 
     def print_transactions(self):
         for transaction in self.transactions:
