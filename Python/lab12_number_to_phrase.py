@@ -18,6 +18,36 @@ def tens(num):
     dict20to99 = {1: 'Ten', 2:'Twenty', 3:'Thirty', 4:'Forty', 5:'Fifty', 6:'Sixty', 7:'Seventy', 8:'Eighty', 9:'Ninety', 10:'Hundred'}
     return dict20to99[num]
 
+# need to convert to use this which will require me to do a string len and offset to get the // (Floor) devidor
+dict10to100000 = {3:100, 4:1000, 5:10000, 6:100000 }
+dict10to100000Label = {3: 'Hundreds', 4: 'Thousands', 5: 'Thousands', 6: 'Hundred Thousand' }
+
+# Needs work for compund ranges like hundres, thousands, etc...
+def hundreds_to_hundred_thousand(num):
+    output = ''
+    str_num = str(num)
+    str_len = len(str_num)
+    if(str_len >= 3): # process numbers greater than 99
+        floor = (num//dict10to100000[str_len])
+        output = dict10to100000Label[str_len]
+    elif (str_len < 3):
+        if 20 <= num <= 99:
+            output += tens(num%10)
+            num = num%10
+        if num < 1:
+            return format_out(orig_num, output)
+            output += ' '
+
+        if 10 < num < 20:
+            output += teens(num)
+
+        else: 
+            output += ones(num)
+
+    return output
+
+
+
 # Convert 100-999 to a string representation
 def hundreds(num):
     output = ''
@@ -154,14 +184,14 @@ def convert_numbers_to_roman_numbers(num):
     return f"Number:{orig_num} Roman:{output}"
 
 
-print(convert_number_phrase(4))
-print(convert_number_phrase(19))
-print(convert_number_phrase(33))
-print(convert_number_phrase(99))
-print(convert_number_phrase(100))
-print(convert_number_phrase(333))
-print(convert_number_phrase(999))
-print(convert_number_phrase(101))
+print(hundreds_to_hundred_thousand(4))
+print(hundreds_to_hundred_thousand(19))
+print(hundreds_to_hundred_thousand(33))
+print(hundreds_to_hundred_thousand(99))
+print(hundreds_to_hundred_thousand(100))
+print(hundreds_to_hundred_thousand(333))
+print(hundreds_to_hundred_thousand(999))
+print(hundreds_to_hundred_thousand(101))
 print(convert_number_phrase(111))
 print(convert_number_phrase(500))
 print(convert_number_phrase(1000))
