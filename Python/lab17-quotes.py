@@ -131,7 +131,6 @@ def get_keyword_from_user():
 def lab17_verion2():
     qotd = QuoteOfTheDay()
     keyword = None
-    print("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-")
 
     if keyword == None:
 
@@ -176,6 +175,8 @@ def main():
     print("Quote of the day: ")   
     lab17_verion1()
     print("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n\n\n")
+
+    print("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-")
     lab17_verion2()
 
 
