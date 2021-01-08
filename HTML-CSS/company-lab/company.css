@@ -1,0 +1,44 @@
+
+
+
+body {
+    background-image: url('images/ocean.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+main {
+    background-color:rgb(0, 175, 254);
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+    max-width:80%;
+    min-height: 100%;
+    margin: 0 auto;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.row {
+    background-color:rgb(0, 175, 254);
+}
+
+.col-xs-6.col-lg-4 {
+    opacity: .9;
+}
+
+.company {
+    text-align:center;
+    font-family: 'Lobster', cursive;
+    margin:0 0 10px 0;
+    padding:22px;
+    
+    font-size: 72px;
+    color:black;
+    text-shadow: -1px -1px 0 yellow,  
+                1px -1px 0 yellow,
+                -1px 1px 0 yellow,
+                1px 1px 0 yellow;
+}
+
