@@ -34,10 +34,14 @@ validator_button.addEventListener("click", function() {
 function validate_credit_card() {
     // Convert the input string into a list of ints
     var credit_card_number_div = document.querySelector("#credit_card_number");
-    if (credit_card_number_div.value == "") {
-        credit_card_number = credit_card_number_div.placeholder
-    } else {
+    console.log("Value Feild: " + credit_card_number_div.value)
+    console.log("Card Field Value Length: " + credit_card_number_div.value.length)
+    if (credit_card_number_div.value.length > 0) {
         credit_card_number = credit_card_number_div.value
+        console.log("Value Credit Card No.: " + credit_card_number)
+    } else {
+        credit_card_number = credit_card_number_div.placeholder
+        console.log("Placeholder Credit Card No.: " + credit_card_number)
     }
     console.log("Incoming Credit Card No.: " + credit_card_number)
     cred_list = credit_card_number.split(" ")
