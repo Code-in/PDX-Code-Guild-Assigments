@@ -23,40 +23,57 @@ For example, the worked out steps would be:
 Valid!
 */
 
-function validate_credit_card(card) {
+// Select the generate passord button and add a Event listener for click actions on the button
+let validator_button = document.querySelector("#validate_credit_card");
+console.log("Got Button: " + validator_button)
+validator_button.addEventListener("click", function() {
+    validate_credit_card()
+});
+
+
+function validate_credit_card() {
     // Convert the input string into a list of ints
-    cred_list = card.split(" ")
-    num_cred_list = []
-    for (var i = 0; i < cred_list.length; i++) {
-        num_cred_list.push(cred_list[i])
+    var credit_card_number_div = document.querySelector("#credit_card_number");
+    if (credit_card_number_div.value == "") {
+        credit_card_number = credit_card_number_div.placeholder
+    } else {
+        credit_card_number = credit_card_number_div.value
     }
+    console.log("Incoming Credit Card No.: " + credit_card_number)
+    cred_list = credit_card_number.split(" ")
+    num_cred_list = []
+    
+    for (var i = 0; i < cred_list.length; i++) {
+        num_cred_list.push(parseInt(cred_list[i]))
+    }
+    console.log("Card Array of ints: " + num_cred_list)
         
     // Slice off the last digit. That is the check digit.
     last_dig = num_cred_list.pop()
-    console.log("Last Digit: {last_dig}")
+    console.log("Last Digit: " + last_dig)
     // Reverse the digits.
     num_cred_list.reverse()
     console.log("Reserver card: " + num_cred_list)
 
     // Double every other element in the reversed list.
     for (var i = 0; i < num_cred_list.length; i++) {
-        if (i % 2 == 0) {
+        if ((i % 2) == 0) {
             num_cred_list[i] = num_cred_list[i] + num_cred_list[i]
         }
     }
     console.log("Double elements: " + num_cred_list)
 
     // Subtract nine from numbers over nine.
-    for (var i = 0; i < num_cred_list; i++) {
+    for (var i = 0; i < num_cred_list.length; i++) {
         if (num_cred_list[i] > 9) {
             num_cred_list[i] -= 9
         }
     }
-    console.log(num_cred_list)
+    console.log("Subtract numbers from 9 or greater: " + num_cred_list)
 
     // Sum all values.
     var sum = 0
-    for (num = 0; num < num_cred_list; num++) {
+    for (num = 0; num < num_cred_list.length; num++) {
         sum += num
         console.log(sum)
     }
@@ -67,11 +84,14 @@ function validate_credit_card(card) {
     console.log("remainder: " + remainder)
 
     var validates = false
+    let credit_validation = document.querySelector("#card_validated");
     if (remainder == last_dig) {
         console.log("Credit card validates")
-        validates = True
+        validates = true
+        credit_validation.innerText = "Credit card validates"
     } else {
         console.log("Card doens't validate")
+        credit_validation.innerText = "Card doens't validate"
     }
     return validates
 }
