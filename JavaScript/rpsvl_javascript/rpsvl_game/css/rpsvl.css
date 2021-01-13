@@ -1,0 +1,65 @@
+
+
+header {
+    text-align:center;
+    white-space: nowrap;
+}
+
+.choices_container {
+    display: flex;
+}
+
+.btn_container {
+    position: relative;
+    width: 120px;
+    text-align:center;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    margin: 10px;
+}
+  
+
+.btn_container img {
+    padding: 5px;
+    max-width: 100px;
+    height: 100px;
+}
+  
+.btn_container .btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    background-color: #555;
+    color: white;
+    font-size: 16px;
+    padding: 12px 24px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+  
+.container .btn:hover {
+    background-color: black;
+}
+
+.game_outcome_container img {
+    padding: 5px;
+    max-width: 200px;
+    height: 200px;
+}
+
+#winner_container {
+    display: none
+}
+
+#loser_container {
+    display: none
+}
+
+#tie_container {
+    display: none
+}

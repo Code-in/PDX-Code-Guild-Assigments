@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- External CSS -->
+    <link rel="stylesheet" href="css/rpsvl.css" type="text/css" />
+    <script src="javascript/rpsvl.js"></script>
+</head>
+<body>
+
+    <header>
+        <h1>Rock, Paper, Scissors, Volcan and Lizard Game</h1>
+        <p>Let's play Rock, Paper, Scissors, Volcan and Lizard</p>       
+    </header>
+
+    <hr/>
+    <hr/>
+    <p>Click the button for your choice: Rock, Paper, Scissors, Volcan and Lizard</p>
+    <div class="choices_container">
+        <div class="btn_container">
+            <img src="images/rock.png" alt="Rock">
+            <button id="vulcan" type="button" onclick="main('r')">Rock</button>
+        </div>
+
+        <div class="btn_container">
+            <img src="images/paper.png" alt="Paper">
+            <button id="vulcan" type="button" onclick="main('p')">Paper</button>
+        </div>
+
+        <div class="btn_container">
+            <img src="images/scissors.png" alt="Scissors">
+            <button id="vulcan" type="button" onclick="main('s')">Scissors</button>
+        </div>
+
+        <div class="btn_container">
+            <img src="images/vulcan.png" alt="Vulcan">
+            <button id="vulcan" type="button" onclick="main('v')">Vulcan</button>
+        </div>
+
+        <div class="btn_container">
+            <img src="images/lizard.png" alt="Lizard">
+            <button id="vulcan" type="button" onclick="main('l')">Lizard</button>
+        </div>
+    </div>
+
+    <div class="game_outcome_container">
+        <div id="description_container">
+            <p></p>
+        </div>
+        
+        <div id="winner_container">
+            <img src="images/winner.png" alt="Winner">
+            <p>You win!</p>
+        </div>
+    
+        <div id="loser_container">
+            <img src="images/loser.png" alt="Loser">
+            <p>You lose!</p>
+        </div>
+
+        <div id="tie_container">
+            <img src="images/tie.png" alt="Tie">
+            <p>You and Computer Tie!</p>
+        </div>
+    </div>
+
+    
+</body>
+</html>
