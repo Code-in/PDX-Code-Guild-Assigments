@@ -6,7 +6,6 @@
     <title>Document</title>
     <!-- External CSS -->
     <link rel="stylesheet" href="css/rpsvl.css" type="text/css" />
-    <script src="javascript/rpsvl.js"></script>
 </head>
 <body>
 
@@ -21,27 +20,27 @@
     <div class="choices_container">
         <div class="btn_container">
             <img src="images/rock.png" alt="Rock">
-            <button id="vulcan" type="button" onclick="main('r')">Rock</button>
+            <button class="action_button" type="button" data-character="r">Rock</button>
         </div>
 
         <div class="btn_container">
             <img src="images/paper.png" alt="Paper">
-            <button id="vulcan" type="button" onclick="main('p')">Paper</button>
+            <button class="action_button" type="button" data-character="p">Paper</button>
         </div>
 
         <div class="btn_container">
             <img src="images/scissors.png" alt="Scissors">
-            <button id="vulcan" type="button" onclick="main('s')">Scissors</button>
+            <button class="action_button" type="button" data-character="s">Scissors</button>
         </div>
 
         <div class="btn_container">
             <img src="images/vulcan.png" alt="Vulcan">
-            <button id="vulcan" type="button" onclick="main('v')">Vulcan</button>
+            <button class="action_button" type="button" data-character="v">Vulcan</button>
         </div>
 
         <div class="btn_container">
             <img src="images/lizard.png" alt="Lizard">
-            <button id="vulcan" type="button" onclick="main('l')">Lizard</button>
+            <button class="action_button" type="button" data-character="l">Lizard</button>
         </div>
     </div>
 
@@ -65,7 +64,7 @@
             <p>You and Computer Tie!</p>
         </div>
     </div>
-
+    <script src="javascript/rpsvl.js"></script>
     
 </body>
 </html>

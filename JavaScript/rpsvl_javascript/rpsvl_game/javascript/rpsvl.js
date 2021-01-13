@@ -58,3 +58,12 @@ function whoWon(computer, player) {
     return wins[computer + player]
 }
     
+// Select the generate passord button and add a Event listener for click actions on the button
+let buttonArray = document.querySelectorAll(".action_button");
+for (button of buttonArray) {
+    console.log(button)
+    button.addEventListener("click", function() {
+        console.log(button.dataset['character'])
+        main(button.dataset['character'])
+    });
+}

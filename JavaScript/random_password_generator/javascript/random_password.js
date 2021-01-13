@@ -7,6 +7,14 @@ const number_letters = ['0','1','2','3','4','5','6','7','8','9']
 const special_letters = ['!','"','#','$','%','&','\'','(',')','*','+',',','-','.','/',':',';','<','=','>','?','@','[','\\',']','^','_','`','{','|','}','~']
 const chars = lowercase_letters + uppercase_letters + number_letters + special_letters
 
+
+// Select the generate passord button and add a Event listener for click actions on the button
+let password_generator = document.querySelector("#generate_password_button");
+console.log("Got Button: " + password_generator)
+password_generator.addEventListener("click", function() {
+    main()
+});
+
 // Create the random password per the length requested
 function create_random_password(password_len, character_set) {
     let pwd = []
@@ -17,6 +25,7 @@ function create_random_password(password_len, character_set) {
     return pwd
 }
 
+// Function - to shuffle and array
 function shuffle(parray) {
     var cindex = parray.length
     var tchar
@@ -34,6 +43,7 @@ function shuffle(parray) {
     return parray;
 }
 
+// Function - runtime function to take users input to generate a password
 function main() {
     settings = {}
     // find out how many lowercase, uppercase, digits and special characters they want in custom generate password
@@ -49,8 +59,6 @@ function main() {
     var pwd_array = lpwd.concat(upwd , npwd, spwd)
     var rand_pwd_array = shuffle(pwd_array)
 
-    //var password = rand_pwd_array.toString()
-
     var password = ""
     for (let i in rand_pwd_array) {
         password += rand_pwd_array[i]
@@ -60,8 +68,3 @@ function main() {
     document.querySelector("#password_output").innerText = password
 }
 
-let password_generator = document.getElementById("#generate_password_button");
-
-password_generator.addEventListener("click", function() {
-    alert("hello")
-});
