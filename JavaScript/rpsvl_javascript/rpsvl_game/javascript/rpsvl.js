@@ -62,8 +62,8 @@ function whoWon(computer, player) {
 let buttonArray = document.querySelectorAll(".action_button");
 for (button of buttonArray) {
     console.log(button)
-    button.addEventListener("click", function() {
-        console.log(button.dataset['character'])
-        main(button.dataset['character'])
+    button.addEventListener("click", function(event) {
+        console.log(event.target.dataset.character)
+        main(event.target.dataset.character)
     });
 }

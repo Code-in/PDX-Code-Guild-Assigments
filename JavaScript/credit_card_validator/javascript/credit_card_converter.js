@@ -23,6 +23,8 @@ For example, the worked out steps would be:
 Valid!
 */
 
+// Convert the input string into a list of ints
+var credit_card_number_div = document.querySelector("#credit_card_number");
 // Select the generate passord button and add a Event listener for click actions on the button
 let validator_button = document.querySelector("#validate_credit_card");
 console.log("Got Button: " + validator_button)
@@ -32,8 +34,8 @@ validator_button.addEventListener("click", function() {
 
 
 function validate_credit_card() {
-    // Convert the input string into a list of ints
-    var credit_card_number_div = document.querySelector("#credit_card_number");
+
+    // Note the input has to be "text" for input not "number"!!!!
     console.log("Value Feild: " + credit_card_number_div.value)
     console.log("Card Field Value Length: " + credit_card_number_div.value.length)
     if (credit_card_number_div.value.length > 0) {
