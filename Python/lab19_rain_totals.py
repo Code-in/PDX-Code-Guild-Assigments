@@ -160,7 +160,7 @@ class RainData():
 
     # Class Method - Draw the data for a specific year to a MatPlotLib view
     def draw_specific_year_plot(self, year, days):
-        year_data = None
+        year_of_day = None
         x_values_list = []
         y_values_list = []
 

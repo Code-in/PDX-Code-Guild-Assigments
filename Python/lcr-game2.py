@@ -17,20 +17,22 @@ class Player():
     def __init__(self, name):
         self.name = name 
         self.chips = 3
-​    # display's the instance/object information in string format for readability
+
+    # display's the instance/object information in string format for readability
     def __str__(self):
         return '(' + self.name + '-' + str(self.chips) + ')'
     
     #When printed output, it will be printed using repr
     def __repr__(self):
         return self.name + '-' + str(self.chips)
-​
+
+    # increase the chips count
     def increment_chips(self):
         self.chips += 1
     
     def decrement_chips(self):
         self.chips -= 1
-​
+
     def number_of_rolls(self):
         # determines the number of rolls a player gets per turn.
         if self.chips >= 3:
@@ -43,12 +45,11 @@ class Player():
     @staticmethod
     def random_roll():
         return random.choice(['L','C','R','.','.','.']) 
-​
-​
-    
-​
+
+
 players = [Player('Will'), Player('Peter'), Player('Lisa'), Player('Matthew')]
-​
+
+
 def roll_dice(current_player, left_player, right_player):
     rolls = current_player.number_of_rolls()
     #print(f'rolls: {rolls}')
@@ -67,8 +68,7 @@ def roll_dice(current_player, left_player, right_player):
         print(f'{current_player.name}\'s chips: {current_player.chips}')
         print(f'The current pot is {Player.pot}')
 
-​
-​
+
 #this while loop will run until user types "done"
 play_again = True
 while play_again:
@@ -85,7 +85,7 @@ while play_again:
   
  
 print(players)
-​
+
 
 #players[0].chips = 0
 #Everyone starts with 3 chips
@@ -93,5 +93,3 @@ print(players)
 #if a player has zero chips, they pass the dice.
 #when the program starts, get the name's of players until the user enters done.
 print(roll_dice(players[0], players[1],players[2]))
-​
-​

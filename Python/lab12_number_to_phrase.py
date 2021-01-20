@@ -35,7 +35,7 @@ def hundreds_to_hundred_thousand(num):
             output += tens(num%10)
             num = num%10
         if num < 1:
-            return format_out(orig_num, output)
+            #return format_out(orig_num, output)
             output += ' '
 
         if 10 < num < 20:

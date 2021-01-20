@@ -43,7 +43,7 @@ class ATM():
             self.last_date_icomputed = True
             return self.account_balance * self.irate
         return 0.0
-
+        
     def print_transactions(self):
         for transaction in self.transactions:
             print(transaction)
