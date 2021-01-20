@@ -9,12 +9,43 @@ let table_done = document.querySelector('#table_done')
 let div_alert = document.querySelector('#div_alert')
 let input_search = document.querySelector('#searchField')
 
+window.onload = (event) => {
+    console.log('page is fully loaded'); 
+    //saveData('todoList', null) // Clean out DOM Data when needed
+    let todoList = readData('todoList')
+    console.log("Data:" + todoList)
+    if(todoList != null) {
+        console.log("Update DOM drawning with data")
+        console.log(todoList)
+        console.log("Dom len: " + todoList.length)
+        for(x = 0; x < todoList.length; x++) {
+            // Draw DOM
+            console.log('todo: ' + todoList[x]['todo'] + 'notes: ' + todoList[x]['notes'] + 'date: ' + todoList[x]['date'])
+            drawTodoItems(todoList[x]['todo'], todoList[x]['notes'], todoList[x]['date'])
+        }
+    } else {
+        console.log("No data to update DOM")
+    }
+    let doneList = readData('doneList')
+    console.log("Data:" + doneList)
+    if(doneList != null) {
+        console.log("Update DOM drawning with data")
+        console.log(doneList)
+        console.log("Dom len: " + doneList.length)
+        for(x = 0; x < doneList.length; x++) {
+            // Draw DOM
+            console.log('todo: ' + doneList[x]['todo'] + 'notes: ' + doneList[x]['notes'] + 'date: ' + doneList[x]['date'])
+            drawTodoItems(doneList[x]['todo'], doneList[x]['notes'], doneList[x]['date'])
+        }
+    } else {
+        console.log("No data to update DOM")
+    }
+  }
 
-btn_add.addEventListener('click', function(event) {
-    
-    let todo = input_todo.value
-    let notes = input_notes.value
-    let date = input_date.value
+  function drawTodoItems(in_todo, in_notes, in_date) {
+    let todo = in_todo
+    let notes = in_notes
+    let date = in_date
 
     if (todo === '' || notes === '' || date === '') {
         // alert('Please fill out all fields')
@@ -24,9 +55,6 @@ btn_add.addEventListener('click', function(event) {
         }, 3000)
         return
     }
-
-    input_todo.value = ''
-    input_notes.value = ''
 
     date = date.split('-')
     date = date[1] + '/' + date[2] + '/' + date[0]
@@ -56,6 +84,7 @@ btn_add.addEventListener('click', function(event) {
     })
     td_btn_remove.appendChild(span_remove)
     tr.appendChild(td_btn_remove)
+    table_todo.appendChild(tr)
 
     let td_btn_done = document.createElement('td')
     let span_done = document.createElement('span')
@@ -76,20 +105,56 @@ btn_add.addEventListener('click', function(event) {
     tr.appendChild(td_btn_done)
 
     table_todo.appendChild(tr)
+  }
+
+
+btn_add.addEventListener('click', function(event) {
+
+    let todo = input_todo.value
+    let notes = input_notes.value
+    let date = input_date.value
+    
+    // Draw DOM
+    drawTodoItems(todo, notes, date)
+
+    input_todo.value = ''
+    input_notes.value = ''
+
+    // The saving section for the added user data
+    let len = 0
+    let todoList = readData('todoList')
+    if (todoList === null) {
+        todoList = []
+    }
+    todoList.push({'todo':todo,'notes':notes,'date':date})
+    console.log(todoList)
+    saveData('todoList', todoList)
 })
 
 
 function search() {
     var filter = input_search.value.toLowerCase()
-    for (let i = 0; i < table_todo.children.length; i++) {
-        if(i > 0) {
-            let tr = table_todo.children[i]
-            console.log(tr)
-            if (tr.textContent.toLowerCase().includes(filter)) {
-                tr.style.display = ""
-            } else {
-                tr.style.display = "none"
-            }
+    for (let i = 1; i < table_todo.children.length; i++) {
+        let tr = table_todo.children[i]
+        console.log(tr)
+        console.log("Content: " + tr.textContent)
+        if (tr.textContent.toLowerCase().includes(filter)) {
+            tr.style.display = ""
+        } else {
+            tr.style.display = "none"
         }
     }
 }
+
+
+// CRUD methods
+
+// This is a temporary Create and Update
+function saveData(name, data){
+    localStorage.setItem(name, JSON.stringify(data))
+}
+
+function readData(name) {
+    return JSON.parse(localStorage.getItem(name))
+}
+
