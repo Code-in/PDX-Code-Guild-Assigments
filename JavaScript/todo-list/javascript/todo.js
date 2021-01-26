@@ -79,17 +79,21 @@ window.onload = (event) => {
     let span_remove = document.createElement('span')
     span_remove.innerText = '✕'
     span_remove.classList.add('btn', 'btn-danger')
+    // The "RED" X box which should remove the todo item from the list
     span_remove.addEventListener('click', function(event) {
         table_todo.removeChild(tr)
     })
     td_btn_remove.appendChild(span_remove)
     tr.appendChild(td_btn_remove)
     table_todo.appendChild(tr)
+  }
 
+  function DrawDoneItems() {
     let td_btn_done = document.createElement('td')
     let span_done = document.createElement('span')
     span_done.innerText = '√'
     span_done.classList.add('btn', 'btn-success')
+    // The "GREEN" √ Box which should move the item from the doto list to the done list.
     span_done.addEventListener('click', function(event) {
         table_todo.removeChild(tr)
         tr.removeChild(td_btn_done)
@@ -100,6 +104,12 @@ window.onload = (event) => {
             table_done.removeChild(tr)
         })
         table_done.appendChild(tr)
+
+        var doneList = []
+        // NOTE this needs to be refactored it's not a clean way of doing this.
+        doneList.push({'todo':tr.children[0].innerText,'notes':tr.children[1].innerText,'date':tr.children[2].innerText})
+        saveData('doneList', doneList)
+
     })
     td_btn_done.appendChild(span_done)
     tr.appendChild(td_btn_done)
@@ -126,6 +136,7 @@ btn_add.addEventListener('click', function(event) {
     if (todoList === null) {
         todoList = []
     }
+    // This push a new item on the todoList with title, notes and date when you press the "Add" button
     todoList.push({'todo':todo,'notes':notes,'date':date})
     console.log(todoList)
     saveData('todoList', todoList)

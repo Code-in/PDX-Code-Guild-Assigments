@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="css/vue_rotx.css" type="text/css" />
+
+    <title>VueRotX Encoder</title>
+</head>
+
+<body>
+    <div id="app" class="container">
+        <!-- Title -->
+        <div class="row">
+            <div class="col">
+                <h1></h1>
+            </div>
+        </div>
+
+        <div class="jumbotron">
+            <h1>VueRotX Encoder</h1>
+            <p>The VueRotX Encoder allows the user to specify the offset for the character set to encode the text.</p>
+        </div>
+        <pre>
+
+        </pre>
+        <div class="row align-items-center">
+            <div class="col-sm-1 col-md-1">
+                <label class="" aria-label="Encoder Offset">Encoder Offset</label>
+            </div>
+            <div class="col-sm-1 col-md-1">
+                <input type="number" v-model="rotx_offset" class="form-control" v-on:click="hideRotx" placeholder="13"
+                    aria-label="13">
+            </div>
+            <div class="col-sm-10 col-md-7">
+                <input type="text" v-model="text_to_encode" class="form-control" placeholder="Text to encode"
+                    v-on:click="hideRotx" v-on:keyup.enter="encodeText" aria-label="Text to encode">
+            </div>
+            <div class="col-sm-12 col-md-3">
+                <button type="button" class="btn btn-outline-primary" v-on:click="encodeText">Encode</button>
+            </div>
+            <!-- <div v-html="encoded_text"></div> -->
+        </div>
+        <div id="div_alert" class="alert alert-danger w-100" role="alert" style="display:none;"> <!-- v-show true/false -->
+            Please fill out all input fields encluding an offset
+        </div>
+        <pre>
+
+        </pre>
+        <div id="encoded_group" class="list-group" style="display:none;">
+            <a href="#" class="list-group-item active">
+                <h4 class="list-group-item-heading">RotX Encoded</h4>
+                <p class="list-group-item-text" v-html="encoded_text"></p>
+                <button type="button" class="btn btn-secondary" v-on:click="copyText">Copy</button>
+            </a>
+        </div>
+
+
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
+    <!-- Vue JS - Must come before page javascript -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <!-- Page JS -->
+    <script src="javascript/vue_rotx.js"></script>
+</body>
+
+</html>
