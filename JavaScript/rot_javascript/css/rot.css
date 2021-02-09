@@ -1,0 +1,18 @@
+
+
+h1 {
+    font-size: 48px;
+}
+
+label {
+    font-size: 24px;
+}
+
+.encrypt_container {
+    margin: 10px;
+}
+
+.encrypt_container img {
+    width: 100px;
+
+}
