@@ -25,11 +25,6 @@
     <div id="app">
         <div class="container">
             <div class="row align-items-center">
-
-                <div class="col-12">
-                    <img v-bind:src="cat_url" aria-label="Cat Image" />
-                </div>
-
                 <div class="col-sm-4 my-4">
                     <button class="btn btn-secondary w-100" v-on:click="seePreviousCatPhoto">&lt;&lt; Get Previous Cat Photo</button>
                 </div>
@@ -41,6 +36,10 @@
                 </div>
                 <div class="col-sm-4 my-4">
                     <button class="btn btn-secondary w-100" v-on:click="getCatPhoto">Get Cat Photo &gt;&gt;</button>
+                </div>
+
+                <div class="col-12">
+                    <img v-bind:src="cat_url" aria-label="Cat Image" />
                 </div>
 
             </div>
