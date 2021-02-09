@@ -1,0 +1,16 @@
+h1 {
+    font-size: 48px;
+}
+
+label {
+    font-size: 24px;
+}
+
+.converter_container {
+    margin: 10px;
+}
+
+.converter_container img {
+    width: 100px;
+
+}
