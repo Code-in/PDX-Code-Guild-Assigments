@@ -99,6 +99,13 @@ def rot_all_characters_by_offset(chars, offset):
 
 
 
+offset = 13
+in_output = "hello world"
+output = rot_by_offset(in_output, offset)
+print(output)
+output = rot_by_offset(output, (-1 * offset))
+print(output)
+
 offset = random.randint(0, 25)
 in_output = "hello world!@&$^#(#"
 output = rot_by_offset(in_output, offset)
