@@ -7,7 +7,7 @@ class QuoteOfTheDay():
     # Method - inializer for the qotd site class
     def __init__(self):
         # Note: in real code you would never want to have this in your soure code or check it into a git repo.
-        self.site_token = "855df50978dc9afd6bf86579913c9f8b"
+        self.site_token = ""  # Need paste in the api key when I run it.
         self.set_quote_of_the_day_url()
         self.set_quotes_url()
     
