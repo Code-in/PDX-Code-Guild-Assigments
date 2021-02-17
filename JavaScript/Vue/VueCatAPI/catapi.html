@@ -25,23 +25,33 @@
     <div id="app">
         <div class="container">
             <div class="row align-items-center">
+
+
                 <div class="col-sm-4 my-4">
-                    <button class="btn btn-secondary w-100" v-on:click="seePreviousCatPhoto">&lt;&lt; Get Previous Cat Photo</button>
+                    <button class="btn btn-secondary w-100" v-on:click="seePreviousCatPhoto">&lt;&lt; Get Previous Cat
+                        Photo</button>
                 </div>
 
                 <div class="col-sm-2 my-4">
                     <select class="form-select" v-model="selected_cat_category">
-                        <option v-for="category in cat_catagories" v-bind:value="category">{{ category.name | capitalize }}</option>
+                        <option v-for="category in cat_catagories" v-bind:value="category">{{ category.name | capitalize
+                            }}</option>
                     </select>
                 </div>
                 <div class="col-sm-4 my-4">
                     <button class="btn btn-secondary w-100" v-on:click="getCatPhoto">Get Cat Photo &gt;&gt;</button>
                 </div>
-
                 <div class="col-12">
-                    <img v-bind:src="cat_url" aria-label="Cat Image" />
+                    <img class="big-cat-image" v-bind:src="cat_url" aria-label="Cat Image" />
                 </div>
-
+            </div>
+            <div class="dropdown">
+                <button class="dropbtn">
+                    Cats on Demand
+                </button>
+                <div class="dropdown-content">
+                    <img v-for="(cat_url, index) in cat_url_array" v-on:click="getSelectedCatPhoto(index)" v-bind:value="index" v-bind:src="cat_url" width="70" height="70">
+                </div>
             </div>
         </div>
     </div>

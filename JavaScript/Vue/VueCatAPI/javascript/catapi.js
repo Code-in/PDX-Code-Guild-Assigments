@@ -36,6 +36,15 @@ let app = new Vue({
                 this.cat_url = this.cat_url_array[this.cat_array_current_index]
             }
         },
+        getSelectedCatPhoto : function(index) {
+            console.log("getSelectedCatPhoto: "+ index)
+            console.log("urls: "+ this.cat_url_array)
+            console.log("url to go back to: "+ this.cat_url_array[index])
+            if(index >= 0) {
+                this.cat_array_current_index = index
+                this.cat_url = this.cat_url_array[this.cat_array_current_index]
+            }
+        },
         getCatagoryList: function() {
             axios({
                 method: 'get',
