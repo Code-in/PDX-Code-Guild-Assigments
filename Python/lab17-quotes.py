@@ -10,7 +10,7 @@ class QuoteOfTheDay():
         self.data = None
         # Note: in real code you would never want to have this in your soure code or check it into a git repo.
         with open("secret.json") as json_file:
-                self.data = json.load(json_file)
+            self.data = json.load(json_file)
 
         self.site_token = self.data["api_key"]  # Need paste in the api key when I run it.
         self.set_quote_of_the_day_url()
