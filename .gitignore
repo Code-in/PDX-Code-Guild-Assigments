@@ -4,7 +4,11 @@ __pycache__
 config.js
 secret.js
 secrets.js
+secret.json
+secrets.json
 images/
 image/
 img/
 
+raven.txt
+Python/hayden_island.rain.txt
