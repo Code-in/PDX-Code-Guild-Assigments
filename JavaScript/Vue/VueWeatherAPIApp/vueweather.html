@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="css/vueweather.css" type="text/css" />
+    <script src="javascript/secret.js"></script>
+
+    <title>Dark Days</title>
+</head>
+
+<body>
+    <div id="app" class="container">
+
+        <div class="jumbotron">
+            <h1>Dark Days</h1>
+            <p>Dark Days is a 7 day weather forecast based on your current location</p>
+        </div>
+
+        <div v-if="loading">
+            <p>Fetching weather data...</p>
+        </div>
+        <div v-if="!loading">
+            <label class="clouds" aria-label="Percentage">Clouds: {{ day.clouds }}</label>
+            <label class="dew_point" aria-label="Percentage">DewPoint: {{ day.dew_point }}</label>
+            <label class="dt" aria-label="Percentage">Date/Time: {{ day.dt }}</label>
+            <label class="feels_like" aria-label="Percentage">Feels Like: {{ day.feels_like }}</label>
+
+            <label class="humidity" aria-label="Percentage">Humdity: {{ day.humidity }}</label>
+            <label class="pop" aria-label="Percentage">Pop: {{ day.pop }}</label>
+            <label class="pressure" aria-label="Percentage">Pressure: {{ day.pressure}}</label>
+            <label class="rain" aria-label="Percentage">Rain: {{ day.rain }}</label>
+            <label class="sunrise" aria-label="Percentage">Sunrise: {{ day.runrise }}</label>
+            <label class="sunset" aria-label="Percentage">Sunset: {{ day.sunset }}</label>
+            <label class="temp" aria-label="Percentage">Tempature: {{ day.temp }}</label>
+
+            <label class="uvi" aria-label="Percentage">UVI: {{ day.uvi }}</label>
+            <label class="weather" aria-label="Percentage">Weather:{{ day.weather }}</label>
+
+            <label class="wind_deg" aria-label="Percentage">Wind Degree: {{ day.wind_deg }}</label>
+            <label class="wind_speed" aria-label="Percentage">Wind Speed: {{ day.wind_speed }}</label>
+            <img v-bind:src="this.weather_icon"/> 
+        </div>
+
+
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
+    <!-- Vue JS - Must come before page javascript -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <!-- Axios -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"
+        integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ=="
+        crossorigin="anonymous"></script>
+    <!-- Page JS -->
+    <script src="javascript/vueweather.js"></script>
+</body>
+
+</html>

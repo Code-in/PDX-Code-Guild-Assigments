@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Required meta tags -->
+    <link rel="preconnect" href="https://fonts.gstatic.com"> 
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="css/vue_time_code.css" type="text/css" />
+
+    <title>MultiTimers</title>
+</head>
+
+<body>
+    <div id="app" class="container">
+
+        <div class="row align-items-center">
+
+            <div class="col-12 btn screen_black">
+                <label class="" aria-label="Output" :key="displayTime">{{displayTime}}</label>
+            </div>
+            <div class="col-3 btn btn_grey" >
+                <label class="" aria-label="Count Down" v-on:click="countDownTimer(`${startstop}`)">Count Down</label>
+            </div>
+            <div class="col-3 btn btn_grey" >
+                <label class="" aria-label="Stop Watch" v-on:click="stopWatch(`${startstop}`)">Stop Watch</label>
+            </div>
+            <div class="col-3 btn btn_grey"  >
+                <label class="" aria-label="Current Time" v-on:click="currentTime(`${startstop}`)">Current Time</label>
+            </div>
+            <div class="col-3 btn btn_orange" >
+                <label class=""  aria-label="Start" v-on:click="toggleTimer()">{{startstop}}</label>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
+    <!-- Vue JS - Must come before page javascript -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <!-- Page JS -->
+    <script src="javascript/vue_time_code.js"></script>
+</body>
+
+</html>
