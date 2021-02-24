@@ -24,32 +24,40 @@
             <h1>Dark Days</h1>
             <p>Dark Days is a 7 day weather forecast based on your current location</p>
         </div>
+        <div class="row align-items-center">
 
-        <div v-if="loading">
-            <p>Fetching weather data...</p>
+            <div class="col-8">
+                <div v-if="loading">
+                    <p>Fetching weather data...</p>
+                </div>
+                <div v-if="!loading">
+                    <pre>
+                    Date/Time: {{ day.dt }}
+                    Clouds: {{ day.clouds }}%
+                    DewPoint: {{ day.dew_point }}&deg;
+                    Feels Like: {{ day.feels_like }}&deg;F
+                    Humdity: {{ day.humidity }}%
+                    Pressure: {{ day.pressure}}in
+                    Rain: {{ day.rain }}
+                    Sunrise: {{ day.sunrise }}
+                    Sunset: {{ day.sunset }}
+                    Tempature: {{ day.temp }}&deg;F
+                    UVI: {{ day.uvi }}
+                    Weather:{{ day.weather[0].description }}
+                    Wind Degree: {{ day.wind_deg }}&deg;
+                    Wind Speed: {{ day.wind_speed }} mph
+                    </pre>
+                </div>
+            </div>
+            <div class="col-4">
+                <div v-if="loading">
+                    <p>...</p>
+                </div>
+                <div v-if="!loading">
+                    <img v-bind:src="this.weather_icon" />
+                </div>
+            </div>
         </div>
-        <div v-if="!loading">
-            <label class="clouds" aria-label="Percentage">Clouds: {{ day.clouds }}</label>
-            <label class="dew_point" aria-label="Percentage">DewPoint: {{ day.dew_point }}</label>
-            <label class="dt" aria-label="Percentage">Date/Time: {{ day.dt }}</label>
-            <label class="feels_like" aria-label="Percentage">Feels Like: {{ day.feels_like }}</label>
-
-            <label class="humidity" aria-label="Percentage">Humdity: {{ day.humidity }}</label>
-            <label class="pop" aria-label="Percentage">Pop: {{ day.pop }}</label>
-            <label class="pressure" aria-label="Percentage">Pressure: {{ day.pressure}}</label>
-            <label class="rain" aria-label="Percentage">Rain: {{ day.rain }}</label>
-            <label class="sunrise" aria-label="Percentage">Sunrise: {{ day.runrise }}</label>
-            <label class="sunset" aria-label="Percentage">Sunset: {{ day.sunset }}</label>
-            <label class="temp" aria-label="Percentage">Tempature: {{ day.temp }}</label>
-
-            <label class="uvi" aria-label="Percentage">UVI: {{ day.uvi }}</label>
-            <label class="weather" aria-label="Percentage">Weather:{{ day.weather }}</label>
-
-            <label class="wind_deg" aria-label="Percentage">Wind Degree: {{ day.wind_deg }}</label>
-            <label class="wind_speed" aria-label="Percentage">Wind Speed: {{ day.wind_speed }}</label>
-            <img v-bind:src="this.weather_icon"/> 
-        </div>
-
 
     </div>
 
