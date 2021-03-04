@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 
+    <link rel="stylesheet" type="text/css" href="{% static 'todo/css/todo.css' %}">
+    <title>Todo</title>
+</head>
+
+<body>
+    <form action="post/" method="post">
+        {% csrf_token %}
+        <textarea name="todo_description"></textarea>
+        <input type="submit" value="Todo">
+    </form> 
+
+    {% for todo in todos %}
+        {% if todo.completed_date != None %}
+            <div>
+                <h3>{{todo.todo_description}}</h3>
+                <p>{{todo.created_date}}</p>
+                <a href="completed/{{todo.id}}/">Completed Todo</a>
+                <a href="remove/{{todo.id}}/">Remove Todo</a>
+            </div>
+        {% else %}
+            <div class"completed">
+                <h1>{{todo.todo_description}}</h1>
+                <p> {{todo.created_date}}</p>
+                <p>{{todo.completed_date}}</p>
+                <a style='color:red;text-decoration' href="remove/{{todo.id}}/">Remove Todo</a>
+            </div>
+        {% endif %}
+    {% endfor %}
+
+</body>
+
+</html>
