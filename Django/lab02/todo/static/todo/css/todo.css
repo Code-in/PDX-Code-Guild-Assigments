@@ -4,19 +4,30 @@
     font-size: 18px;
 }
 
-.uncompleted  .todo {
+.uncompleted .todo {
     display: flex;
     justify-content: left;
 }
 
-.completed {
-    color:red;
-    text-decoration:line-through;
-    font-size: 18px;
+.uncompleted .todo a {
+    text-decoration: none;
 }
 
-.completed  .todo {
+.completed {
+    color:rgb(111, 111, 111);
+    text-decoration:line-through;
+}
+
+.completed .todo {
     display: flex;
     justify-content:left;
 }
 
+.completed .todo a {
+    text-decoration: none;
+}
+
+a:link {
+    padding-right: 60px;
+    text-decoration: none;
+}
