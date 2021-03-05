@@ -1,12 +1,22 @@
 
-.completed  h1 {
+.uncompleted {
+    color:rgb(0, 0, 0);
+    font-size: 18px;
+}
+
+.uncompleted  .todo {
+    display: flex;
+    justify-content: left;
+}
+
+.completed {
     color:red;
     text-decoration:line-through;
     font-size: 18px;
 }
 
-.completed  p {
-    color:red;
-    text-decoration:line-through;
-    font-size: 18px;
+.completed  .todo {
+    display: flex;
+    justify-content:left;
 }
+

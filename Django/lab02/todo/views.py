@@ -3,7 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 import datetime
 from django.utils import timezone
-from .models import TodoItem
+from .models import TodoItem, Priority
 
 # The index page should have a list of all the todo items (showing only the name), 
 # with completed items in a separate list (or at the bottom of the existing list) 
@@ -20,15 +20,19 @@ def index(request):
 
 def index(request):
     todos = TodoItem.objects.order_by('-created_date')[:20]
+    priorities = Priority.objects.all()
     context = {
-        "todos": todos
+        "todos": todos,
+        "priorities": priorities
     }
     return render(request, 'todo/index.html', context)
 
 def post(request):
     form = request.POST
     todo = TodoItem()
-    todo.todo_description = form['todo_description']
+    todo.todo_description = form['todo_description']    
+    priority = Priority.objects.get(pk=form['priority'])
+    todo.priority = priority
     todo.save()
     return HttpResponseRedirect(reverse('index'))
 
