@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 
+    <link rel="stylesheet" type="text/css" href="{% static 'todo/css/todo.css' %}">
+    <title>Itsy making urls small</title>
+</head>
+
+<body>
+    <form action="save/" method="post">
+        {% csrf_token %}
+        <textarea name="url"></textarea>
+        <input type="submit" value="Make Itsy!">
+    </form> 
+    <h1>Other Itsy Urls</h1>
+    {% for url in urls %}
+        {% if url.code != None %}
+            <div class="itsafied_urls">
+                <a href="http://127.0.0.1:8000/itsy/{{url.code}}">{{url.code}}</a>
+                <a>(No. of times accessed: {{url.count}}) --> <a>
+                <a>{{url.url}}</a>
+            </div>
+        {% endif %} 
+    {% endfor %}
+
+</body>
+</html>
