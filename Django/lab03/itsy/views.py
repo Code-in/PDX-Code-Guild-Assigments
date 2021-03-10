@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from .models import Itsy
@@ -9,7 +9,7 @@ CODE_LENGTH = 6
 # Create your views here.
 
 def index(request):
-    urls = Itsy.objects.all()
+    urls = Itsy.objects.order_by("-count")
     context = {
         "urls": urls,
     }
@@ -25,7 +25,8 @@ def save(request):
     return HttpResponseRedirect(reverse('index'))
 
 def proxy(request, slug):
-    itsy = Itsy.objects.get(code=slug)
+    #itsy = Itsy.objects.get(code=slug)
+    itsy = get_object_or_404(Itsy, code=slug)
     itsy.count += 1
     itsy.save()
     return HttpResponseRedirect(itsy.url)
