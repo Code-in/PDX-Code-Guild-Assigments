@@ -18,18 +18,39 @@
     <div class="container">
         <div class="row align-items-center">
             <h1>Pokedex</h1>
+            <div class="pagination">
+                <span class="step-links">
+                    {% if pokemon.has_previous %}
+                        <a href="?page=1">&laquo; first</a>
+                        <a href="?page={{ pokemon.previous_page_number }}">previous</a>
+                    {% endif %}
+
+                    <span class="current">
+                        Page {{ pokemon.number }} of {{ pokemon.paginator.num_pages }}.
+                    </span>
+
+                    {% if pokemon.has_next %}
+                        <a href="?page={{ pokemon.next_page_number }}">next</a>
+                        <a href="?page={{ pokemon.paginator.num_pages }}">last &raquo;</a>
+                    {% endif %}
+                </span>
+            </div>
+
             {% for mon in pokemon %}
-                    <div class="col-1">
-                        <img src={{mon.image_front}}>
-                        <a href="http://127.0.0.1:8000/pokedex/pokemon/{{mon.id}}/">{{mon.name.capitalize}}</a>
-                        <a></a>
-                        <ol>
-                        {% for type in mon.types.all %}
-                            <li>{{type.name.capitalize}})</li>
-                        {% endfor %}
-                        </ol>
-                    </div>
+                <div class="col-1">
+                    <img src={{mon.image_front}}>
+                    <a href="http://127.0.0.1:8000/pokedex/pokemon/{{mon.id}}/">{{mon.name.capitalize}}</a>
+                    <a></a>
+                    <ol>
+                    {% for type in mon.types.all %}
+                        <li>{{type.name.capitalize}})</li>
+                    {% endfor %}
+                    </ol>
+                </div>
             {% endfor %}
+
+
+
         </div>
     </div>
     <!-- Bootstrap JS -->
