@@ -6,11 +6,13 @@ import json
 import requests
 import pyperclip
 
+HOWMANYPOKEMON = 600
+
 class Command(BaseCommand):
 
     def handle(self, *args, **options):
         data = {'pokemon':[]}
-        num_pokemon = 152
+        num_pokemon = HOWMANYPOKEMON
         for i in range(1, num_pokemon):
             # get the data from the pokemon api
             response = requests.get('https://pokeapi.co/api/v2/pokemon/' + str(i))

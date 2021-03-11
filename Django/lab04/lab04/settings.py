@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'mathfilters',
     'pokedex.apps.PokedexConfig',
     'django.contrib.admin',
     'django.contrib.auth',
