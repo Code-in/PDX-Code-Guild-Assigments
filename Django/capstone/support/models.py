@@ -4,7 +4,7 @@ from django.db import models
 
 def user_directory_path(instance, filename): 
     # file will be uploaded to MEDIA_ROOT / user_<id>/<filename> 
-    return 'user_{0}/{1}'.format(instance.user.id, filename) 
+    return 'images/email_{0}/{1}'.format(instance.email, filename) 
 
 
 class SupportType(models.Model):
@@ -12,7 +12,7 @@ class SupportType(models.Model):
     support_id = models.IntegerField(blank=False)
 
     def __str__(self):
-        return f"{self.id}) {self.support_type}...{self.support_id}"
+        return f"ID:{self.id} Type:{self.support_type} Prior Support ID:{self.support_id}"
 
 class Support(models.Model):
     date_created = models.DateTimeField(auto_now_add=True)
@@ -25,5 +25,5 @@ class Support(models.Model):
     response = models.ForeignKey(SupportType, on_delete=models.CASCADE, related_name="support", blank=True, null=True)
 
     def __str__(self):
-        return f"{self.id}) {self.title[:25]}..."
+        return f"ID:{self.id} Title:{self.title[:25]}"
 
