@@ -1,0 +1,26 @@
+{% extends "blog/base.html" %}
+
+{% load static %}
+
+{% block header %}<title>Blog Details</title>{% endblock %}
+
+{% block breadtrail %}
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+    <li class="breadcrumb-item"><a href="{% url 'posts' %}">Posts</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Details</li>
+  </ol>
+</nav>
+{% endblock %}
+
+{% block content %}
+
+    <div>
+        <h3>Author: {{blog.user}}</h3>
+        <p>Title: {{blog.title}}</p>
+        <p>Body: {{blog.body}}</p>
+        <p>Creation Date: {{blog.date_created}}</p>
+    </div>
+
+{% endblock %}

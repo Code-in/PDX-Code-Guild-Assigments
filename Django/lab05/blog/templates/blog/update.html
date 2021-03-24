@@ -1,0 +1,27 @@
+{% extends "blog/base.html" %}
+
+{% load static %}
+
+{% block header %}<title>Update - Blog</title>{% endblock %}
+
+{% block breadtrail %}
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+    <li class="breadcrumb-item"><a href="{% url 'profile' %}">Profile</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Update Blog</li>
+  </ol>
+</nav>
+{% endblock %}
+
+
+{% block content %}
+    <div>
+        <form action="{% url 'update' blog.id %}" method="POST">
+            {% csrf_token %}
+            <input type="text" name="title" placeholder="Title" value="{{blog.title}}">
+            <input type="text" name="body" value="{{blog.body}}">
+            <input type="submit" value="Login">
+        </form>
+    </div>
+{% endblock %}

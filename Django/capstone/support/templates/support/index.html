@@ -1,0 +1,30 @@
+{% extends "support/base.html" %}
+
+{% load static %}
+
+{% block header %}<title>Support - Index</title>{% endblock %}
+
+{% block breadtrail %}
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Index</li>
+  </ol>
+</nav>
+{% endblock %}
+
+
+{% block content %}
+    <div>
+        <form action="{% url 'support:index' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="text" name="title" placeholder="Title: ">
+            <input type="email" name="email" placeholder="your@email.com">
+            <input type="textfield" name="message" placeholder="Discribe your issue">
+            <input type="file" name="image" accept="image/*">
+            <input type="text" name="iphone" placeholder="Phone Model">
+            <input type="text" name="ios" placeholder="iOS Version">
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+{% endblock %}

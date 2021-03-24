@@ -1,0 +1,29 @@
+{% extends "blog/base.html" %}
+
+{% load static %}
+
+{% block header %}<title>Login - Blog</title>{% endblock %}
+
+{% block breadtrail %}
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Login</li>
+  </ol>
+</nav>
+{% endblock %}
+
+
+{% block content %}
+    <div>
+        {% if error %}
+        {{error}}
+        {% endif %}
+        <form action="{% url 'login' %}" method="post">
+            {% csrf_token %}
+            <input type="text" name="username" placeholder="Username: " value="{{username}}">
+            <input type="password" name="password" placeholder="Password: ">
+            <input type="submit" value="Login">
+        </form>
+    </div>
+{% endblock %}
