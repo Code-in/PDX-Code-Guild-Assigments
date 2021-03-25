@@ -30,10 +30,12 @@ class Command(BaseCommand):
                 sticket.image = data['image']
             sticket.iphone = data['iphone']
             sticket.ios = data['ios']
+
+            sticket.prior_support_id=data['prior_support_id']
             sticket.save()
 
             if not data['response'] == None:
-                st_obj, created = SupportType.objects.get_or_create(support_type=data['response']['support_type'],support_id=data['response']['support_id'])
+                st_obj, created = SupportType.objects.get_or_create(support_type=data['response']['support_type'])
 
             print(st_obj)
             sticket.response = st_obj

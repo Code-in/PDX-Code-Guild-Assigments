@@ -1,0 +1,57 @@
+{% extends "support/base.html" %}
+
+{% load static %}
+
+{% block header %}<title>Reponse Dashboard</title>{% endblock %}
+
+{% block breadtrail %}
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Response</li>
+  </ol>
+</nav>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Support Requests</h1>
+        {% for sup in support %}
+            {% if forloop.first %}
+                <div data="{{forloop.counter}}" class="row mb-2">
+            {% elif forloop.counter0|divisibleby:2 %}
+                </div>
+                <div data="{{forloop.counter}}" class="row mb-2">
+            {% endif %}
+
+                <div class="col-md-6">
+                <div class="card flex-md-row mb-4 box-shadow h-md-250">
+                    <div class="card-body d-flex flex-column align-items-start">
+                    <strong class="d-inline-block mb-2 text-primary">{{ sup.id }}</strong>
+                    <h3 class="mb-0">
+                        <a class="text-dark" href="#">{{sup.email.capitalize}}</a>
+                    </h3>
+                    <div class="mb-1 text-muted">
+                        <ul class="list-unstyled">
+                            <li>{{sup.response.support_type}}</li>
+                            <li>{{sup.title}}</li>
+                            <li>{{sup.iphone}}</li>
+                            <li>{{sup.ios}}</li>
+                            <li>{{sup.prior_support_id}}</li>
+                            <li>{{sup.message}}</li>
+                        </ul>
+                    </div>
+                    <a href="#">Additonal Details</a>
+                    </div>
+                    {% if sup.image %}
+                    <img class="card-img-right flex-auto d-none d-md-block" src={{sup.image.url}} alt="Thumbnail [200x250]" style="width: 150px; height: 200px;" data-holder-rendered="true">
+                    {% endif %}
+                </div>
+                </div>
+            {% if forloop.last %}
+                </div>
+            {% endif %}
+        {% endfor %}
+
+    </div>
+{% endblock %}

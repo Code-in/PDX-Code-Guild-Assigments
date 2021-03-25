@@ -6,10 +6,9 @@ from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Support, SupportType
+from django.core.mail import send_mail
+from django.conf import settings
 # Create your views here.
-
-# def index(request):
-#     return HttpResponse("Hello, world. You're at the Support-App index.")
 
 def index(request):
     print("Got here!")
@@ -31,25 +30,59 @@ def index(request):
                 last_id = prior.id 
                 print(f"Last: {last_id}")
 
-        obj, created = SupportType.objects.get_or_create(support_type='support', support_id=last_id)
+        obj, created = SupportType.objects.get_or_create(support_type='support')
         obj.save()
 
         support.response = obj
+        support.prior_support_id=last_id
         support.save()
 
         print("Success Posting")
-        return HttpResponse("We POSTed. You're at the Support-App index.")
-        #return HttpResponseRedirect(reverse('profile'))
+        
+        return HttpResponseRedirect(reverse('support:index'))  # TODO: Need to redirect to another page and tell them we'll get back them as soon as possible
     return render(request, 'support/index.html')
     #print("No POST")
     #return HttpResponse("Hello, world. You're at the Support-App index.")
 
-def response(request):
+def request(request):
     if request.user.is_authenticated:
         print("Success authenticated")
-        return render(request, 'support/response.html')
+        support = Support.objects.all()
+
+        context = {
+            "support": support,
+        }
+        return render(request, 'support/response.html', context)
     print("Failure NOT authenticated")
-    return render(request, 'index.html')
+    return render(request, 'support/index.html')
+
+
+
+
+
+def response(request, id):
+    print("Got here!")
+    if request.user.is_authenticated:
+        if request.method == "POST":
+            support = Support.objects.get(id=id)
+            form = request.POST
+            msg = form['msg']
+            print("Success Posting")
+            send_mail(
+                'RE:>' + support.title,
+                msg,
+                settings.SUPPORT_EMAIL,
+                [support.email],
+                fail_silently=False,
+            )
+
+            return HttpResponseRedirect(reverse('support:index'))
+        else:
+            # TODO: Need to fill out a single page details via context
+            return render(request, 'support/response.html')
+    return render(request, 'support/index.html')
+
+
 
 
 def checkin(request):

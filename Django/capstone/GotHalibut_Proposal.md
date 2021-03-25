@@ -31,12 +31,16 @@ The key apps will revolve around documentation, customer support, privacy policy
 ### Week 1
 - [X] Create a Git project for this work
 - [X] Create the 3 app starter stubs
+- [X] Created importDB command for my model
+- [X] Created a cleanDB command for when I need to migrate in new changes
 - [X] Define the model for the support app
     - [X] Implement the Support model 
     - [X] Create the support page
+    - [X] Uploading Images
 - [x] Define Response ticket model
     - [x] Implement the Response model 
-    - [ ] Create issue response page
+    - [0] Create issue request dashboard page
+    - [0] Create issue response page which emails them back from a form
 
 ### Week 2
 - [ ] Create Vue app for viewing GotHalibut documentation

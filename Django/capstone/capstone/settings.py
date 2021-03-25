@@ -26,7 +26,7 @@ SECRET_KEY = 'k&=pm22pv@v^-s54upcpnf&qzl+a8f)a-dv&fzh)jpldc+^$sp'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = []  #'127.0.0.1'
 
 
 # Application definition
@@ -123,6 +123,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-MEDIA_URL = '/uploaded_files/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'uploaded_files')
+MEDIA_ROOT =  os.path.join(BASE_DIR, 'media') 
+MEDIA_URL = '/media/'
 
+SUPPORT_EMAIL = 'codein@mac.com'
