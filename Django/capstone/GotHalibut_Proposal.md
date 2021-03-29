@@ -42,6 +42,9 @@ The key apps will revolve around documentation, customer support, privacy policy
     - [0] Create issue request dashboard page
     - [0] Create issue response page which emails them back from a form
 
+- [ ] Need to add responsed and requested support date in the data
+
+
 ### Week 2
 - [ ] Create Vue app for viewing GotHalibut documentation
     - [ ] Create GotHalibut documentation using html/css

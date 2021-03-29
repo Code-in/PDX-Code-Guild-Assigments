@@ -1,0 +1,73 @@
+{% extends "support/base_table.html" %}
+
+{% load static %}
+
+{% block header %}<title>Requests for Support Emails Dashboard</title>{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+  <nav aria-label="breadcrumb" class="mt-3 mb-3">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Data Tables</li>
+    </ol>
+  </nav>
+  <button id="button" class="w-100 btn btn-primary btn-lg mt-3 mb-3" type="submit">Response To</button>
+  <table id="example" class="table table-striped" style="width:100%">
+        <thead>
+            <tr>
+                <th>Responsed To</th>
+                <th>ID</th>
+                <th>Email</th>
+                <th>Title</th>
+                <th>Message</th>
+                <th>iPhone</th>
+                <th>iOS</th>
+                <th>Image</th>
+                <th>Prev ID</th>
+                <th>Type</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for sup in support %}
+            <tr>
+                {% if sup.responsed_too is True %}
+                <td> Yes </td>
+                {% else %}
+                <td>   </td>
+                {% endif %}
+                <td>{{sup.id}}</td>
+                <td>{{sup.email}}</td>
+                <td>{{sup.title}}</td>
+                <td>{{sup.message}}</td>
+                <td>{{sup.iphone}}</td>
+                <td>{{sup.ios}}</td>
+                <td>{{sup.image}}</td>
+                {% if sup.prior_support_id is None %}
+                  <td></td>
+                {% else %}
+                  <td>{{sup.prior_support_id}}</td>
+                {% endif %}
+                <td>{{sup.response.support_type}}</td>   
+            </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>Responsed To</th>
+                <th>ID</th>
+                <th>Email</th>
+                <th>Title</th>
+                <th>Message</th>
+                <th>iPhone</th>
+                <th>iOS</th>
+                <th>Image</th>
+                <th>Prev ID</th>
+                <th>Type</th>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+{% endblock %}

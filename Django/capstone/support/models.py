@@ -17,12 +17,12 @@ class Support(models.Model):
     email = models.EmailField(max_length=128)
     title = models.CharField(max_length=128)
     message = models.TextField(max_length=1024)
-    image = models.ImageField(upload_to=user_directory_path, default = None)
+    image = models.ImageField(upload_to=user_directory_path, blank=True)
     iphone = models.CharField(max_length=48)
     ios = models.CharField(max_length=16)
     prior_support_id = models.IntegerField(blank=True, null=True)
     response = models.ForeignKey(SupportType, on_delete=models.CASCADE, related_name="support", blank=True, null=True)
-
+    responsed_too = models.BooleanField(default=False)
     def __str__(self):
         return f"ID:{self.id} Title:{self.title[:25]} Prior Support ID:{self.prior_support_id} "
 

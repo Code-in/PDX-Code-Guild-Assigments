@@ -57,31 +57,55 @@ def request(request):
     return render(request, 'support/index.html')
 
 
-
-
-
 def response(request, id):
     print("Got here!")
     if request.user.is_authenticated:
+        print("Athenticated")
         if request.method == "POST":
+            print("Made a POST")
             support = Support.objects.get(id=id)
             form = request.POST
-            msg = form['msg']
+            msg = form['message']
+            title = 'RE:>' + support.title
             print("Success Posting")
-            send_mail(
-                'RE:>' + support.title,
+            success = send_mail(
+                title,
                 msg,
                 settings.SUPPORT_EMAIL,
                 [support.email],
                 fail_silently=False,
             )
-
-            return HttpResponseRedirect(reverse('support:index'))
+            if success:
+                support.responsed_too = True
+                support.save()
+                support = Support.objects.all()
+                context = {
+                    "support": support,
+                }
+                return render(request, 'support/datatable.html', context)
         else:
             # TODO: Need to fill out a single page details via context
-            return render(request, 'support/response.html')
+            print("None POST action")
+            support = Support.objects.get(id=id)
+            print(support)
+            context = {
+                "support": support,
+            }
+            return render(request, 'support/response.html', context)
+    print("Why didn't we athenticate???")
     return render(request, 'support/index.html')
 
+
+def datatable(request):
+    print("got to datatable")
+    if request.user.is_authenticated:
+        print("Success authenticated")
+        support = Support.objects.all()
+        context = {
+            "support": support,
+        }
+        return render(request, 'support/datatable.html', context)
+    return render(request, 'support/index.html')
 
 
 
@@ -95,7 +119,7 @@ def checkin(request):
         if user is not None:
             print('logging in user')
             login(request, user)
-            return HttpResponseRedirect(reverse('support:response'))
+            return HttpResponseRedirect(reverse('support:datatable'))
     return render(request, 'support/checkin.html')
 
 

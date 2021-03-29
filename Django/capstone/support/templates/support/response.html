@@ -4,27 +4,46 @@
 
 {% block header %}<title>Support - Index</title>{% endblock %}
 
-{% block breadtrail %}
-<nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Index</li>
-  </ol>
-</nav>
-{% endblock %}
-
-
 {% block content %}
-    <div>
-        <form action="{% url 'support:index' %}" method="post" enctype="multipart/form-data">
+        <div class="container">
+        <nav aria-label="breadcrumb" class="mt-3 mb-3">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'support:datatable' %}">DataTable</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Response</li>
+        </ol>
+        </nav>
+
+        <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+            <div class="col p-4 d-flex flex-column position-static">
+                <strong class="d-inline-block mb-2 text-primary">{{support.email}}</strong>
+                <div class="mb-1 text-muted">Title:</div>
+                <h3 class="mb-0">{{support.title}}</h3>
+                <div class="mb-1 text-muted">Date</div>
+                <p class="card-text mb-auto">{{support.date_created}}</p>
+                <div class="mb-1 text-muted">Message:</div>
+                <p class="card-text mb-auto">{{support.message}}</p>
+                <div class="mb-1 text-muted">Phone:</div>
+                <p class="card-text mb-auto">{{support.iphone}}</p>
+                <div class="mb-1 text-muted">iOS:</div>
+                <p class="card-text mb-auto">{{support.ios}}</p>
+            </div>
+            {% if support.image|length > 0 %}
+                <div class="col-auto d-none d-lg-block">
+                    <img class="card-img-right flex-auto d-none d-md-block" src={{support.image.url}} alt="Thumbnail [200x250]" style="width: 150px; height: 200px;" data-holder-rendered="true">
+                </div>
+            {% endif %}
+        </div>
+
+        <form action="{% url 'support:response' support.id  %}" method="POST">
             {% csrf_token %}
-            <input type="text" name="title" placeholder="Title: " required>
-            <input type="email" name="email" placeholder="your@email.com" required>
-            <input type="textfield" name="message" placeholder="Discribe your issue" required>
-            <input type="file" name="image" accept="image/*">
-            <input type="text" name="iphone" placeholder="Phone Model" required>
-            <input type="text" name="ios" placeholder="iOS Version" required>
-            <input type="submit" value="Submit">
+            <div class="form-group mt-4 mb-1">
+            <label for="message">Explanation of issue</label>
+            <textarea class="form-control" id="message" rows="10" name="message" placeholder="Support description..." required></textarea>
+            </div>
+            <button id="button" class="w-100 btn btn-primary btn-lg mt-3 mb-3" type="submit">Response To</button>
         </form>
     </div>
 {% endblock %}
+
+
