@@ -46,14 +46,14 @@ The key apps will revolve around documentation, customer support, privacy policy
 
 
 ### Week 2
-- [ ] Create Vue app for viewing GotHalibut documentation
-    - [ ] Create GotHalibut documentation using html/css
-    - [ ] Build a restful call functionality for the View app to pull the documentation from the back-end
+- [X] Create Vue app for viewing GotHalibut documentation
+    - [O] Create GotHalibut documentation using html/css
+    - [O] Build a restful call functionality for the View app to pull the documentation from the back-end
 
 ### Week 3 (functionally complete capstone by the end of week 3)
 - [ ] Create the policy page which is required by Apple for AppStore Apps
-- [ ] Create a management dashboard where I can link histories from tickets and Reponses if a support request spans over multiple support requests and responses.
-- [ ] Have management dashboard show pending support requests, resolved support requests, create filtering to help find linkages.
+- [X] Create a management dashboard where I can link histories from tickets and Reponses if a support request spans over multiple support requests and responses.
+- [X] Have management dashboard show pending support requests, resolved support requests, create filtering to help find linkages.
 
 ### Week 4
 - [ ] Deploy to Heroku 
