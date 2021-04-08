@@ -11,5 +11,18 @@ image/
 img/
 media/
 
+pids
+logs
+node_modules
+npm-debug.log
+coverage/
+run
+dist
+.DS_Store
+.nyc_output
+.basement
+config.local.js
+basement_dist
+
 raven.txt
 Python/hayden_island.rain.txt
